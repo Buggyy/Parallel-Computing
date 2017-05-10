@@ -1,15 +1,19 @@
 package com.hva;
 
+import java.util.ArrayList;
+
 public class Main {
 
 
     public static void main(String[] args) {
-        //  Create test Array Object
+        //  Create test Integer[] Object
         Integer[] testArray;
 
         //  Fill test Array Object
-        testArray = GenerateArray(500);
+        testArray = GenerateArray(3000000);
 
+        //  Default Bucket Size = 5
+        BucketSort.sort(testArray);
 
     }
 

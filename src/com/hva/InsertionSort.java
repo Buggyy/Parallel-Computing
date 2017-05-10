@@ -3,8 +3,8 @@ package com.hva;
 /**
  * Created by S.R. Lobato on 5/10/17.
  */
-public class InsertionSort {
-    public static <T extends Comparable<T>> void sort(T[] array) {
+class InsertionSort {
+    static <T extends Comparable<T>> void sort(T[] array) {
         for (int i = 1; i < array.length; i++) {
             T item = array[i];
             int indexHole = i;

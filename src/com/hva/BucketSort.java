@@ -1,19 +1,23 @@
 package com.hva;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by S.R. Lobato on 5/10/17.
  */
-public class BucketSort {
+class BucketSort {
     private static final int DEFAULT_BUCKET_SIZE = 5;
 
-    public static void sort(Integer[] array) {
+    static void sort(Integer[] array) {
         sort(array, DEFAULT_BUCKET_SIZE);
     }
 
-    public static void sort(Integer[] array, int bucketSize) {
+    private static void sort(Integer[] array, int bucketSize) {
+        //  Start timer
+        final long startTime = System.nanoTime();
+
         if (array.length == 0) {
             return;
         }
@@ -31,25 +35,31 @@ public class BucketSort {
 
         // Initialise buckets
         int bucketCount = (maxValue - minValue) / bucketSize + 1;
-        List<List<Integer>> buckets = new ArrayList<List<Integer>>(bucketCount);
+        List<List<Integer>> buckets = new ArrayList<>(bucketCount);
         for (int i = 0; i < bucketCount; i++) {
-            buckets.add(new ArrayList<Integer>());
+            buckets.add(new ArrayList<>());
         }
 
         // Distribute input array values into buckets
-        for (int i = 0; i < array.length; i++) {
-            buckets.get((array[i] - minValue) / bucketSize).add(array[i]);
+        for (Integer anArray : array) {
+            buckets.get((anArray - minValue) / bucketSize).add(anArray);
         }
 
         // Sort buckets and place back into input array
         int currentIndex = 0;
-        for (int i = 0; i < buckets.size(); i++) {
-            Integer[] bucketArray = new Integer[buckets.get(i).size()];
-            bucketArray = buckets.get(i).toArray(bucketArray);
+        for (List<Integer> bucket : buckets) {
+            Integer[] bucketArray = new Integer[bucket.size()];
+            bucketArray = bucket.toArray(bucketArray);
             InsertionSort.sort(bucketArray);
-            for (int j = 0; j < bucketArray.length; j++) {
-                array[currentIndex++] = bucketArray[j];
+            for (Integer aBucketArray : bucketArray) {
+                array[currentIndex++] = aBucketArray;
             }
         }
+
+        final long duration = System.nanoTime() - startTime;
+        final double seconds = ((double)duration / 1000000000);
+
+        //  Calculate estimated measuring time
+        System.out.format("Estimated measuring time: %f seconds.", seconds);
     }
 }
