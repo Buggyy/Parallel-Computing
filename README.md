@@ -1,5 +1,7 @@
 # Parallel-Computing
-Improving the Bucket Sort algorithm with a full implementation of the Thread and Locks algorithm.
+Bucket sort, also known as bin sort, is a distribution sort that works by arranging elements into several ‘buckets’ which are then sorted using another sort, typically insertion sort, and merged into a sorted list.
+
+This project improves the Bucket Sort algorithm with a full implementation of the Thread and Locks algorithm.
 
 Statistics of the Thread and Lock algorithm on different input sizes and cores are collected, analyzed and discussed. Bottlenecks are identified and explained.
 
