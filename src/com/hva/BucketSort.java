@@ -1,6 +1,5 @@
 package com.hva;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +56,7 @@ class BucketSort {
         }
 
         final long duration = System.nanoTime() - startTime;
-        final double seconds = ((double)duration / 1000000000);
+        final double seconds = ((double) duration / 1000000000);
 
         //  Calculate estimated measuring time
         System.out.format("Estimated measuring time: %f seconds.", seconds);
