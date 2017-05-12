@@ -33,6 +33,7 @@ class BucketSort {
         }
 
         // Initialise buckets
+        //  TODO One Thread divides the buckets over other threads
         int bucketCount = (maxValue - minValue) / bucketSize + 1;
         List<List<Integer>> buckets = new ArrayList<>(bucketCount);
         for (int i = 0; i < bucketCount; i++) {
