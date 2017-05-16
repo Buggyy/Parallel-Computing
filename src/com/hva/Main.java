@@ -1,6 +1,7 @@
 package com.hva;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -8,15 +9,24 @@ public class Main {
 
 
     public static void main(String[] args) {
+        //How many times
+        int howManyTimesToRun = 1;
+
         //  Create test Integer[] Object
         Integer[] testArray;
+        
+        Double[] timingsArray = new Double[howManyTimesToRun];
 
-        //  Fill test Array Object
-        testArray = GenerateArray(3000000);
+        for (int i = 0; i < howManyTimesToRun; i++){
+            timingsArray[i] = BucketSort.sort(GenerateArray(10000000));
+        }
 
-        //  Default Bucket Size = 5
-        BucketSort.sort(testArray);
-
+        Double count = 0.0;
+        for (Double item: timingsArray){
+            count = count + item;
+        }
+//        System.out.println(Arrays.toString(timingsArray));
+        System.out.format("Estimated measuring time: %f seconds.", count/timingsArray.length);
 
     }
 

@@ -1,6 +1,8 @@
 package com.hva;
 
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -15,94 +17,54 @@ public class BucketSort implements Runnable {
     private static final int DEFAULT_BUCKET_SIZE = 5;
     private static int currentIndex = 0;
 
-    static void sort(Integer[] array) {
-        sort(array, DEFAULT_BUCKET_SIZE);
-    }
 
-    private static void sort(Integer[] arrayToSort, int bucketSize) {
-
-        
-        //  Start timer
-        final long startTime = System.nanoTime();
-
-        if (arrayToSort.length == 0) {
-            return;
-        }
+    public static double sort(Integer[] array) {
+        long startTime = System.nanoTime();
 
         // Determine minimum and maximum values
-        Integer minValue = arrayToSort[0];
-        Integer maxValue = arrayToSort[0];
-        for (int i = 1; i < arrayToSort.length; i++) {
-            if (arrayToSort[i] < minValue) {
-                minValue = arrayToSort[i];
-            } else if (arrayToSort[i] > maxValue) {
-                maxValue = arrayToSort[i];
+        Integer minValue = 0;
+        Integer maxValue = 0;
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] < minValue) {
+                minValue = array[i];
+            } else if (array[i] > maxValue) {
+                maxValue = array[i];
             }
         }
 
-        // Initialise buckets
-        int bucketCount = (maxValue - minValue) / bucketSize + 1;
-        List<List<Integer>> buckets = new ArrayList<>(bucketCount);
-
+        //Calculate the amount of buckets, by taking the square root of the amount of items to sort
+        int bucketCount = (int)Math.ceil(Math.sqrt(array.length));
+        List<List<Integer>> buckets = new ArrayList<List<Integer>>(bucketCount);
         for (int i = 0; i < bucketCount; i++) {
-            buckets.add(new ArrayList<>());
+            buckets.add(new ArrayList<Integer>());
         }
 
+        //Calculate the divider
+        Integer divider = (int)Math.ceil((maxValue)/buckets.size()+1);
 
-        // Distribute input array values into buckets
-        // TODO in separate threads
-        for (Integer anArrayElement : arrayToSort) {
-
-            buckets.get((anArrayElement - minValue) / bucketSize).add(anArrayElement);
-
+        //Add the values to their respective buckets
+        for (Integer anArray : array) {
+            buckets.get((int)Math.floor((anArray) / divider)).add(anArray);
         }
 
-        //  TODO nThreads should be automatically calculated (.e.g. list.size() / amountDivided + 1)
-        //  Create an executor service backed by a thread-pool of size 5
-        ExecutorService executorService = Executors.newFixedThreadPool(10);
-
-        //  Sort buckets and place back into input array
-        //  Loop through the contents of each bucket
+        // Sort buckets and place back into input array
+        int currentIndex = 0;
         for (List<Integer> bucket : buckets) {
-
-            executorService.execute(() -> {
-
-                Integer[] bucketArray = new Integer[bucket.size()];
-
-                bucketArray = bucket.toArray(bucketArray);
-
-                InsertionSort.sort(bucketArray);
-
-                for (Integer aBucketArray : bucketArray) {
-                    arrayToSort[currentIndex] = aBucketArray;
-                    incrementSync();
-                }
-
-            });
-
-
-        }
-
-        try {
-            System.out.println("Attempt to shutdown executor");
-            executorService.shutdown();
-            executorService.awaitTermination(5, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            System.err.println("Tasks interrupted");
-        } finally {
-            if (!executorService.isTerminated()) {
-                System.err.println("Cancel non-finished tasks");
+            Integer[] bucketArray = new Integer[bucket.size()];
+            bucketArray = bucket.toArray(bucketArray);
+            InsertionSort.sort(bucketArray);
+            for (Integer aBucketArray : bucketArray) {
+                array[currentIndex++] = aBucketArray;
             }
-            executorService.shutdownNow();
-            System.out.println("Shutdown finished");
         }
 
-
-        final long duration = System.nanoTime() - startTime;
-        final double seconds = ((double) duration / 1000000000);
+        long duration = System.nanoTime() - startTime;
+        double seconds = ((double) duration / 1000000000);
 
         //  Calculate estimated measuring time
-        System.out.format("Estimated measuring time: %f seconds.", seconds);
+//        System.out.format("Estimated measuring time: %f seconds.", seconds);
+
+        return seconds;
     }
 
     /**
