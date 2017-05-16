@@ -21,7 +21,7 @@ public class BucketSort implements Runnable {
 
     private static void sort(Integer[] arrayToSort, int bucketSize) {
 
-
+        
         //  Start timer
         final long startTime = System.nanoTime();
 
