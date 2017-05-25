@@ -1,9 +1,5 @@
 package com.hva;
 
-import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 public class Main {
 
 
@@ -32,7 +28,7 @@ public class Main {
 
         for (int i = 0; i < numbers.length; i++) {
             //  Fill index with a random number till the range of 1000 (can be Integer.MAX_VALUE)
-            numbers[i] = (int)(Math.random() * 1000);
+            numbers[i] = (int) (Math.random() * 1000);
         }
 
         return numbers;

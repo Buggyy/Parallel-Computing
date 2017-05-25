@@ -7,13 +7,17 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by S.R. Lobato on 5/10/17.
+ * Maintained and created by:
+ * S.R. Lobato
+ * D. Stern
+ * J. Steenmans
  */
-public class BucketSort implements Runnable {
+class BucketSort {
 
 
     private static final int DEFAULT_BUCKET_SIZE = 5;
     private static int currentIndex = 0;
+
 
     static void sort(Integer[] array) {
         sort(array, DEFAULT_BUCKET_SIZE);
@@ -21,7 +25,9 @@ public class BucketSort implements Runnable {
 
     private static void sort(Integer[] arrayToSort, int bucketSize) {
 
-        
+
+        System.out.println("Performing BucketSort on " + arrayToSort.length + " integers \n");
+
         //  Start timer
         final long startTime = System.nanoTime();
 
@@ -40,32 +46,34 @@ public class BucketSort implements Runnable {
             }
         }
 
-        // Initialise buckets
-        int bucketCount = (maxValue - minValue) / bucketSize + 1;
-        List<List<Integer>> buckets = new ArrayList<>(bucketCount);
+        //  Create an executor service with  a thread pool that creates new threads as needed,
+        //  but will reuse previously constructed threads when they are available
+        ExecutorService executorService = Executors.newCachedThreadPool();
 
-        for (int i = 0; i < bucketCount; i++) {
-            buckets.add(new ArrayList<>());
-        }
+        Integer finalMinValue = minValue;
+        Integer finalMaxValue = maxValue;
+
+        executorService.execute(() -> {
+            // Initialise buckets
+            int bucketCount = (finalMaxValue - finalMinValue) / bucketSize + 1;
+            List<List<Integer>> buckets = new ArrayList<>(bucketCount);
+
+            for (int i = 0; i < bucketCount; i++) {
+                buckets.add(new ArrayList<>());
+            }
 
 
-        // Distribute input array values into buckets
-        // TODO in separate threads
-        for (Integer anArrayElement : arrayToSort) {
+            // Distribute input array values into buckets
+            for (Integer anArrayElement : arrayToSort) {
 
-            buckets.get((anArrayElement - minValue) / bucketSize).add(anArrayElement);
+                buckets.get((anArrayElement - finalMinValue) / bucketSize).add(anArrayElement);
 
-        }
+            }
 
-        //  TODO nThreads should be automatically calculated (.e.g. list.size() / amountDivided + 1)
-        //  Create an executor service backed by a thread-pool of size 5
-        ExecutorService executorService = Executors.newFixedThreadPool(10);
+            //  Sort buckets and place back into input array
+            //  Loop through the contents of each bucket
+            for (List<Integer> bucket : buckets) {
 
-        //  Sort buckets and place back into input array
-        //  Loop through the contents of each bucket
-        for (List<Integer> bucket : buckets) {
-
-            executorService.execute(() -> {
 
                 Integer[] bucketArray = new Integer[bucket.size()];
 
@@ -77,13 +85,18 @@ public class BucketSort implements Runnable {
                     arrayToSort[currentIndex] = aBucketArray;
                     incrementSync();
                 }
+            }
+        });
 
-            });
+        final long duration = System.nanoTime() - startTime;
+        final double seconds = ((double) duration / 1000000000);
 
+        //  Calculate estimated measuring time
+        System.out.format("Estimated measuring time: %f seconds. \n\n\n", seconds);
 
-        }
 
         try {
+            System.out.println("--------------------------------------");
             System.out.println("Attempt to shutdown executor");
             executorService.shutdown();
             executorService.awaitTermination(5, TimeUnit.SECONDS);
@@ -96,13 +109,6 @@ public class BucketSort implements Runnable {
             executorService.shutdownNow();
             System.out.println("Shutdown finished");
         }
-
-
-        final long duration = System.nanoTime() - startTime;
-        final double seconds = ((double) duration / 1000000000);
-
-        //  Calculate estimated measuring time
-        System.out.format("Estimated measuring time: %f seconds.", seconds);
     }
 
     /**
@@ -113,29 +119,4 @@ public class BucketSort implements Runnable {
     }
 
 
-    /**
-     * When an object implementing interface <code>Runnable</code> is used
-     * to create a thread, starting the thread causes the object's
-     * <code>run</code> method to be called in that separately executing
-     * thread.
-     * <p>
-     * The general contract of the method <code>run</code> is that it may
-     * take any action whatsoever.
-     *
-     * @see Thread#run()
-     */
-    @Override
-    public void run() {
-        System.out.println(Thread.currentThread().getName() + " Start. Command = " + currentIndex);
-        incrementSync();
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(Thread.currentThread().getName() + " End.");
-
-    }
 }
