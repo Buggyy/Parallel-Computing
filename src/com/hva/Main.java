@@ -14,19 +14,28 @@ public class Main {
 
         //  Create test Integer[] Object
         Integer[] testArray;
-        
+
         Double[] timingsArray = new Double[howManyTimesToRun];
 
-        for (int i = 0; i < howManyTimesToRun; i++){
-            timingsArray[i] = BucketSort.sort(GenerateArray(10000000));
-        }
-
         Double count = 0.0;
-        for (Double item: timingsArray){
-            count = count + item;
+        for (int i = 0; i < howManyTimesToRun; i++){
+
+            Integer[] randomArray = GenerateArray(10000000);
+//            System.out.println(Arrays.toString(randomArray));
+
+            //Get Start time
+            long startTime = System.nanoTime();
+
+            Integer[] sortedArray = BucketSort.sort(randomArray);
+
+            //Get end time
+            long duration = System.nanoTime() - startTime;
+            count = count + ((double) duration / 1000000000);
+
+//            System.out.println(Arrays.toString(sortedArray));
         }
 //        System.out.println(Arrays.toString(timingsArray));
-        System.out.format("Estimated measuring time: %f seconds.", count/timingsArray.length);
+        System.out.format("Estimated measuring time: %f seconds.", count/howManyTimesToRun);
 
     }
 

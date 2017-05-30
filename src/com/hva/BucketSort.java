@@ -18,9 +18,7 @@ public class BucketSort implements Runnable {
     private static int currentIndex = 0;
 
 
-    public static double sort(Integer[] array) {
-        long startTime = System.nanoTime();
-
+    public static Integer[] sort(Integer[] array) {
         // Determine minimum and maximum values
         Integer minValue = 0;
         Integer maxValue = 0;
@@ -58,13 +56,10 @@ public class BucketSort implements Runnable {
             }
         }
 
-        long duration = System.nanoTime() - startTime;
-        double seconds = ((double) duration / 1000000000);
-
+        return array;
         //  Calculate estimated measuring time
 //        System.out.format("Estimated measuring time: %f seconds.", seconds);
 
-        return seconds;
     }
 
     /**
