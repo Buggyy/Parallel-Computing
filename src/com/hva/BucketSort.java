@@ -23,7 +23,7 @@ class BucketSort {
         sort(array, DEFAULT_BUCKET_SIZE);
     }
 
-    private static void sort(Integer[] arrayToSort, int bucketSize) {
+    static void sort(Integer[] arrayToSort, int bucketSize) {
 
 
         System.out.println("Performing BucketSort on " + arrayToSort.length + " integers \n");
@@ -65,7 +65,6 @@ class BucketSort {
 
             // Distribute input array values into buckets
             for (Integer anArrayElement : arrayToSort) {
-
                 buckets.get((anArrayElement - finalMinValue) / bucketSize).add(anArrayElement);
 
             }
@@ -88,12 +87,6 @@ class BucketSort {
             }
         });
 
-        final long duration = System.nanoTime() - startTime;
-        final double seconds = ((double) duration / 1000000000);
-
-        //  Calculate estimated measuring time
-        System.out.format("Estimated measuring time: %f seconds. \n\n\n", seconds);
-
 
         try {
             System.out.println("--------------------------------------");
@@ -109,6 +102,14 @@ class BucketSort {
             executorService.shutdownNow();
             System.out.println("Shutdown finished");
         }
+
+        final long duration = System.nanoTime() - startTime;
+        final double seconds = ((double) duration / 1000000000);
+
+
+        //  Calculate estimated measuring time
+        System.out.format("Estimated measuring time: %f seconds. \n\n\n", seconds);
+
     }
 
     /**
