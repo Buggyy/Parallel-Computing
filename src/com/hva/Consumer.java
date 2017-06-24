@@ -16,6 +16,8 @@ public class Consumer {
 
     public static void main(String[] args) throws JMSException {
 
+        System.out.println("Consumer started.\n");
+
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
         Connection connection = connectionFactory.createConnection();
         connection.start();
@@ -23,14 +25,20 @@ public class Consumer {
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         Destination destination = session.createQueue(subject);
 
+        System.out.println("Retrieving Message from testQueue2.\n");
         MessageConsumer consumer = session.createConsumer(destination);
         Message message = consumer.receive();
+
 
         if (message instanceof TextMessage) {
             TextMessage textMessage = (TextMessage) message;
 
-            System.out.println("Received'"+textMessage.getText() + "'");
+            System.out.println(textMessage.getText());
         }
+        
         connection.close();
+
+        System.out.println("RMI Finished.\n");
+
     }
 }

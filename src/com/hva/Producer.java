@@ -5,6 +5,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import javax.jms.*;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 import static com.hva.BucketSortfromQueue.ACTIVEMQ_URL;
 
@@ -18,11 +19,21 @@ public class Producer {
 
     public static void main(String[] args) throws JMSException {
 
+        System.out.println("Producer started.\n");
+
+        //  Create scanner
+        Scanner scanner = new Scanner(System.in);
+
         //  Create test Integer[] Object
         Integer[] arrayToSort;
 
+        System.out.println("Enter the amount of integers to generate: ");
+        int amountOfIntegers = scanner.nextInt();
+
+        System.out.println("Generating " + amountOfIntegers + " integers...\n");
+
         //  Fill test Array Object
-        arrayToSort = GenerateArray(1000000);
+        arrayToSort = GenerateArray(amountOfIntegers);
 
         //  Create connection with ActiveMQ
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
@@ -38,7 +49,8 @@ public class Producer {
         TextMessage message = session.createTextMessage(Arrays.toString(arrayToSort));
         producer.send(message);
 
-        System.out.println("Sent Message '" + message.getText() + "'");
+        System.out.println("Message sent to testQueue1.\n");
+        System.out.println("Start BucketSortfromQueue.main() to continue..");
 
         connection.close();
     }

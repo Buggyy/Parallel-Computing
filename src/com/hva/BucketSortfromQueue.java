@@ -16,6 +16,8 @@ public class BucketSortfromQueue {
 
     public static void main(String args[]) throws Exception {
 
+        System.out.println("BucketSort from testQueue1 started.\n");
+
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
         Connection connection = connectionFactory.createConnection();
         connection.start();
@@ -29,22 +31,24 @@ public class BucketSortfromQueue {
         Integer[] arrayToSort = null;
 
         if (message instanceof TextMessage) {
+            System.out.println("Retrieving Message from testQueue2.\n");
+
             TextMessage textMessage = (TextMessage) message;
             //  Get String array back
-            String strArray = textMessage.getText();
-            System.out.println("before format " + strArray);
+            String strArrayFromQueue = textMessage.getText();
 
             //  Store string integers retrieved from queue
-            String[] integers = strArray
+            //  Clean the output
+            String[] integers = strArrayFromQueue
                     .replaceAll("\\[", "")
                     .replaceAll("\\]", "")
                     .replaceAll("\\s", "")
                     .split(",");
 
-            System.out.println("integers format " + strArray);
-
 
             arrayToSort = new Integer[integers.length];
+
+            System.out.println("Turning String Array into Integer Array.\n");
 
             for (int i = 0; i < arrayToSort.length; i++) {
                 try {
@@ -54,6 +58,8 @@ public class BucketSortfromQueue {
                 }
 
             }
+        } else {
+            System.err.println("Failed to get Message!");
         }
 
         Destination destination_toQueue = session.createQueue(subjectTo);
@@ -67,6 +73,10 @@ public class BucketSortfromQueue {
         TextMessage messageTo = session.createTextMessage(stringForConsumer);
         producer.send(messageTo);
         connection.close();
+
+        System.out.println("Message sent to testQueue2.\n");
+        System.out.println("Start Consumer.main() to continue..");
+
     }
 }
 
