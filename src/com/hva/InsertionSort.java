@@ -1,7 +1,10 @@
 package com.hva;
 
 /**
- * Created by S.R. Lobato on 5/10/17.
+ * Maintained and created by:
+ * S. R. Lobato
+ * D. Stern
+ * J. Steenmans
  */
 class InsertionSort {
     static <T extends Comparable<T>> void sort(T[] array) {

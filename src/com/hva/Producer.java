@@ -3,7 +3,6 @@ package com.hva;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
-
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -11,7 +10,11 @@ import static com.hva.BucketSortfromQueue.ACTIVEMQ_URL;
 
 /**
  * The ActiveMQ Producer Class
- *
+ * <p>
+ * Maintained and created by:
+ * S. R. Lobato
+ * D. Stern
+ * J. Steenmans
  */
 public class Producer {
     //    Queue name of Producer
@@ -73,5 +76,18 @@ public class Producer {
         }
 
         return numbers;
+    }
+
+    /**
+     * Check wether the input array is sorted or not
+     * @param listToBeChecked
+     * @return true if array is sorted
+     */
+    public static boolean isSorted(int[] listToBeChecked) {
+        for (int i = 0; i < listToBeChecked.length - 1; i++) {
+            if (listToBeChecked[i] > listToBeChecked[i + 1])
+                return false;
+        }
+        return true;
     }
 }

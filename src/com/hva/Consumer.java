@@ -9,6 +9,10 @@ import static com.hva.BucketSortfromQueue.ACTIVEMQ_URL;
 /**
  * The ActiveMQ Consumer Class
  *
+ * Maintained and created by:
+ * S. R. Lobato
+ * D. Stern
+ * J. Steenmans
  */
 public class Consumer {
     //    Queue name of Consumer
@@ -35,7 +39,7 @@ public class Consumer {
 
             System.out.println(textMessage.getText());
         }
-        
+
         connection.close();
 
         System.out.println("RMI Finished.\n");

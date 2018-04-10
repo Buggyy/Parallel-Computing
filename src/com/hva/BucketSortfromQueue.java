@@ -7,6 +7,11 @@ import java.util.Arrays;
 
 /**
  * The ActiveMQ using the BucketSort algorithm
+ *
+ * Maintained and created by:
+ * S. R. Lobato
+ * D. Stern
+ * J. Steenmans
  */
 public class BucketSortfromQueue {
     static final String ACTIVEMQ_URL = "failover:(tcp://127.0.0.1:61616,localhost:8161)";

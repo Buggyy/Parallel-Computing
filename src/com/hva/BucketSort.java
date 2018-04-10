@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Maintained and created by:
- * S.R. Lobato
+ * S. R. Lobato
  * D. Stern
  * J. Steenmans
  */
