@@ -1,5 +1,4 @@
-import util.EventProfiler;
-
+import utilities.EventProfiler;
 import java.util.Arrays;
 
 /**
@@ -7,6 +6,7 @@ import java.util.Arrays;
  * Chris Verra
  * S. R. Lobato
  */
+
 public final class Main {
 
     private static final int RUNS = 6;
