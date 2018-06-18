@@ -12,9 +12,7 @@ import static com.hva.BucketSortfromQueue.ACTIVEMQ_URL;
  * The ActiveMQ Producer Class
  * <p>
  * Maintained and created by:
-* S. R. Lobato
- Chris Verra*
- *
+ * S. R. Lobato
  */
 public class Producer {
     //    Queue name of Producer

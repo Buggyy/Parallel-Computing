@@ -8,11 +8,8 @@ import static com.hva.BucketSortfromQueue.ACTIVEMQ_URL;
 
 /**
  * The ActiveMQ Consumer Class
- *
  * Maintained and created by:
-* S. R. Lobato
- Chris Verra*
- *
+ * S. R. Lobato
  */
 public class Consumer {
     //    Queue name of Consumer

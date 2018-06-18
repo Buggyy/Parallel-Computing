@@ -2,9 +2,7 @@ package com.hva;
 
 /**
  * Maintained and created by:
-* S. R. Lobato
- Chris Verra*
- *
+ * S. R. Lobato
  */
 public class MergeSort {
     private int[] numbers;

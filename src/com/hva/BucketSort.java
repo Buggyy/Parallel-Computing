@@ -8,9 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Maintained and created by:
-* S. R. Lobato
- Chris Verra*
- *
+ * S. R. Lobato
  */
 class BucketSort {
 
