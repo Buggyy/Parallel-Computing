@@ -1,6 +1,6 @@
-package util;
+package utilities;
 
-import algorithm.ParallelMergeSort;
+import mergesort.ParallelMergeSort;
 
 /**
  * Maintained and created by:

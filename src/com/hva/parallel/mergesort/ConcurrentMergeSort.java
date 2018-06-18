@@ -1,4 +1,4 @@
-package algorithm;
+package mergesort;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;

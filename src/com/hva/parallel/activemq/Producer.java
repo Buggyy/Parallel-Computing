@@ -1,10 +1,8 @@
 package activemq;
 
-import org.apache.activemq.ActiveMQConnectionFactory;
-
 import javax.jms.*;
-
-import static util.Utils.*;
+import org.apache.activemq.ActiveMQConnectionFactory;
+import static utilities.Utilities.*;
 
 /**
  * Maintained and created by:

@@ -1,4 +1,4 @@
-package algorithm;
+package mergesort;
 
 /**
  * Maintained and created by:

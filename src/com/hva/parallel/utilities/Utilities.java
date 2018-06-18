@@ -1,4 +1,4 @@
-package util;
+package utilities;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * Chris Verra
  * S. R. Lobato
  */
-public class Utils {
+public class Utilities {
 
     // source: http://stackoverflow.com/questions/1519736/random-shuffling-of-an-array
     // Implementing Fisher�Yates shuffle

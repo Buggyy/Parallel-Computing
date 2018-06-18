@@ -1,10 +1,9 @@
 package activemq;
 
-import algorithm.ConcurrentMergeSort;
-import org.apache.activemq.ActiveMQConnectionFactory;
-import util.Utils;
-
 import javax.jms.*;
+import mergesort.ConcurrentMergeSort;
+import org.apache.activemq.ActiveMQConnectionFactory;
+import utilities.Utilities;
 
 /**
  * Maintained and created by:

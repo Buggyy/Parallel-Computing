@@ -29,9 +29,9 @@ public final class Main {
         System.out.println(Arrays.toString(array));
 
 //        for (int i = 0; i < RUNS; i++) {
-//            int[] array = Utils.fillArray(ARRAY_LENGTH);
+//            int[] array = Utilities.fillArray(ARRAY_LENGTH);
 //
-//            Utils.shuffleArray(array);
+//            Utilities.shuffleArray(array);
 //
 //            final ConcurrentMergeSort concurrentMergeSort = new ConcurrentMergeSort(array);
 //
@@ -39,7 +39,7 @@ public final class Main {
 //            concurrentMergeSort.sort();
 //            eventProfiler.log("Concurrent merge sort [" + ARRAY_LENGTH + "] sort done");
 //
-//            System.out.println(Utils.isSorted(array));
+//            System.out.println(Utilities.isSorted(array));
 //
 //            ARRAY_LENGTH *= 2;
 //        }

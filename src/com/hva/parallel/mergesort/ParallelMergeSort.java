@@ -1,6 +1,6 @@
-package algorithm;
+package mergesort;
 
-import util.Sorter;
+import utilities.Sorter;
 
 /**
  * Maintained and created by:
