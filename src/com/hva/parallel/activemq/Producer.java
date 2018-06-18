@@ -10,9 +10,8 @@ import static utilities.Utilities.*;
  * S. R. Lobato
  */
 public class Producer {
-    // either connect to the remote ActiveMQ running on the PI, or on the localhost
-//    private static String url = "failover:(tcp://169.254.1.1:61616,localhost:8161)";
-    private static String url = "failover:(tcp://169.254.1.1:61616,tcp://localhost:61616)";
+    // url voor het verbinden met de Raspberry PI
+    Private static String url = "tcp://192.252.1.1:61616"  // klopt dit?
     private static String subject = "testQueue1"; // Queue Name
 
     public static final int NODES = 2;
