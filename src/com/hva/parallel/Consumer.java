@@ -1,10 +1,10 @@
 package activemq;
 
+import javax.jms.*;
 import algorithm.ConcurrentMergeSort;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import util.Utils;
 
-import javax.jms.*;
 
 /**
  * Maintained and created by:
@@ -20,15 +20,15 @@ public class Consumer {
     Public static void main(String[] args) throws  JMSException {
         // connectie regelen
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(url);
-        Connection connectie = connectie Factory.createConnection();
-        connectie.start();
+        Connection connection = connection Factory.createConnection();
+        connection.start();
 
         // sessie aanmaken
-        Session sessie = connectie.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
         // sessie queue met het onderwerp
-        Destination topic = sessie.createQueue(topic);
-        MessageConsumer messageConsumer = sessie.createConsumer(topic);
+        Destination topic = session.createQueue(topic);
+        MessageConsumer messageConsumer = session.createConsumer(topic);
 
         int counter = 0;
 
@@ -61,7 +61,7 @@ public class Consumer {
             }
         }
 
-        connectie.close()
+        connection.close()
     }
 
 }

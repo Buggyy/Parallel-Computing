@@ -2,9 +2,9 @@ package com.hva;
 
 /**
  * Maintained and created by:
- * S. R. Lobato
- * D. Stern
- * J. Steenmans
+* S. R. Lobato
+ Chris Verra*
+ *
  */
 class InsertionSort {
     static <T extends Comparable<T>> void sort(T[] array) {

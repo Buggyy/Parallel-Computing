@@ -10,9 +10,9 @@ import static com.hva.BucketSortfromQueue.ACTIVEMQ_URL;
  * The ActiveMQ Consumer Class
  *
  * Maintained and created by:
- * S. R. Lobato
- * D. Stern
- * J. Steenmans
+* S. R. Lobato
+ Chris Verra*
+ *
  */
 public class Consumer {
     //    Queue name of Consumer

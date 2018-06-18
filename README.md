@@ -8,6 +8,6 @@ Statistics of the Thread and Lock algorithm on different input sizes and cores a
 Applicable concurrent data structures have been tested and experiments with task granularity and problem decomposition support the claim for an (near) optimal implementation.
 
 This project is created and maintained by:
-- Joris Steenmans
+
 - Rafael Lobato
-- Daniel Stern
+- Chris Verra
