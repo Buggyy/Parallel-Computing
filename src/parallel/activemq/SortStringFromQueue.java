@@ -1,19 +1,23 @@
 package activemq;
 
-import javax.jms.*;
-import mergesort.ConcurrentMergeSort;
+import algorithm.ConcurrentMergeSort;
 import org.apache.activemq.ActiveMQConnectionFactory;
-import utilities.Utilities;
+import util.Utils;
+
+import javax.jms.*;
 
 /**
- * Maintained and created by:
- * Chris Verra
- * S. R. Lobato
+ * Created by IntelliJ IDEA
+ * User: Kevin
+ * Date: 6/3/2017
+ * Time: 12:51 PM
+ * To change this template use File | Settings | File Templates.
  */
 public class SortStringFromQueue {
 
-    // url voor het verbinden met de Raspberry PI
-    Private static String url = "tcp://192.252.1.1:61616"  // klopt dit?
+    // either connect to the remote ActiveMQ running on the PI, or on the localhost
+//    private static String url = "failover:(tcp://169.254.1.1:61616,localhost:8161)";
+    private static String url = "failover:(tcp://169.254.1.1:61616,tcp://localhost:61616)";
     private static String subjectFrom = "testQueue1";
     private static String subjectTo = "testQueue2";
 

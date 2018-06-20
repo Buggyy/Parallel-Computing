@@ -4,9 +4,11 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
- * Maintained and created by:
- * Chris Verra
- * S. R. Lobato
+ * Created by IntelliJ IDEA.
+ * User: Kevin
+ * Date: 5/31/2017
+ * Time: 12:55 PM
+ * To change this template use File | Settings | File Templates.
  */
 public interface Service extends Remote {
 

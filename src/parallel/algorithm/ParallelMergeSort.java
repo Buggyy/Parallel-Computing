@@ -1,11 +1,13 @@
-package mergesort;
+package algorithm;
 
-import utilities.Sorter;
+import util.Sorter;
 
 /**
- * Maintained and created by:
- * Chris Verra
- * S. R. Lobato
+ * Created by IntelliJ IDEA
+ * User: Kevin
+ * Date: 5/17/2017
+ * Time: 4:10 PM
+ * To change this template use File | Settings | File Templates.
  */
 public class ParallelMergeSort {
 

@@ -1,12 +1,14 @@
-package mergesort;
+package algorithm;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
 /**
- * Maintained and created by:
- * Chris Verra
- * S. R. Lobato
+ * Created by IntelliJ IDEA
+ * User: Kevin
+ * Date: 5/30/2017
+ * Time: 4:18 PM
+ * To change this template use File | Settings | File Templates.
  */
 public class ConcurrentMergeSort {
 

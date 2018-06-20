@@ -4,14 +4,14 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Maintained and created by:
- * Chris Verra
  * S. R. Lobato
+ * C. Verra
  */
-public class Utilities {
 
+public class Utilities {
     // source: http://stackoverflow.com/questions/1519736/random-shuffling-of-an-array
-    // Implementing Fisher�Yates shuffle
-    public static void shuffleArray(int[] ar) {
+    // Using Fisher Yates
+    public static void fisherYatesArrayShuffle(int[] ar) {
         // If running on Java 6 or older, use `new Random()` on RHS here
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
         for (int i = ar.length - 1; i > 0; i--) {

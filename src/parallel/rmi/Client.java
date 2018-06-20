@@ -7,9 +7,11 @@ import java.net.InetAddress;
 import java.time.LocalDateTime;
 
 /**
- * Maintained and created by:
- * Chris Verra
- * S. R. Lobato
+ * Created by IntelliJ IDEA.
+ * User: Kevin
+ * Date: 5/31/2017
+ * Time: 12:52 PM
+ * To change this template use File | Settings | File Templates.
  */
 public class Client {
 

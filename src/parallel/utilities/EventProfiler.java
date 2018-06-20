@@ -1,9 +1,11 @@
 package utilities;
 
 /**
- * Maintained and created by:
- * Chris Verra
- * S. R. Lobato
+ * Created by IntelliJ IDEA
+ * User: Kevin
+ * Date: 5/16/2017
+ * Time: 5:58 PM
+ * To change this template use File | Settings | File Templates.
  */
 public class EventProfiler {
 

@@ -1,11 +1,13 @@
 package utilities;
 
-import mergesort.ParallelMergeSort;
+import algorithm.ParallelMergeSort;
 
 /**
- * Maintained and created by:
- * Chris Verra
- * S. R. Lobato
+ * Created by IntelliJ IDEA
+ * User: Kevin
+ * Date: 5/17/2017
+ * Time: 7:42 PM
+ * To change this template use File | Settings | File Templates.
  */
 public class Sorter implements Runnable {
 

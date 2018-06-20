@@ -1,17 +1,22 @@
 package activemq;
 
-import javax.jms.*;
 import org.apache.activemq.ActiveMQConnectionFactory;
-import static utilities.Utilities.*;
+
+import javax.jms.*;
+
+import static util.Utils.*;
 
 /**
- * Maintained and created by:
- * Chris Verra
- * S. R. Lobato
+ * Created by IntelliJ IDEA
+ * User: Kevin
+ * Date: 6/3/2017
+ * Time: 11:45 AM
+ * To change this template use File | Settings | File Templates.
  */
 public class Producer {
-    // url voor het verbinden met de Raspberry PI
-    Private static String url = "tcp://192.252.1.1:61616"  // klopt dit?
+    // either connect to the remote ActiveMQ running on the PI, or on the localhost
+//    private static String url = "failover:(tcp://169.254.1.1:61616,localhost:8161)";
+    private static String url = "failover:(tcp://169.254.1.1:61616,tcp://localhost:61616)";
     private static String subject = "testQueue1"; // Queue Name
 
     public static final int NODES = 2;

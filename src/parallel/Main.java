@@ -1,10 +1,10 @@
-import utilities.EventProfiler;
 import java.util.Arrays;
+import utilities.EventProfiler;
 
 /**
  * Maintained and created by:
- * Chris Verra
  * S. R. Lobato
+ * C. Verra
  */
 
 public final class Main {
@@ -31,7 +31,7 @@ public final class Main {
 //        for (int i = 0; i < RUNS; i++) {
 //            int[] array = Utilities.fillArray(ARRAY_LENGTH);
 //
-//            Utilities.shuffleArray(array);
+//            Utilities.fisherYatesArrayShuffle(array);
 //
 //            final ConcurrentMergeSort concurrentMergeSort = new ConcurrentMergeSort(array);
 //
