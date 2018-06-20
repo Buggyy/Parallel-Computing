@@ -1,15 +1,14 @@
-package algorithm;
+package mergesort;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
 /**
- * Created by IntelliJ IDEA
- * User: Kevin
- * Date: 5/30/2017
- * Time: 4:18 PM
- * To change this template use File | Settings | File Templates.
+ * Maintained and created by:
+ * S. R. Lobato
+ * C. Verra
  */
+//@Stefan, ook class renamen?
 public class ConcurrentMergeSort {
 
     private final ForkJoinPool pool = new ForkJoinPool();
@@ -48,7 +47,6 @@ public class ConcurrentMergeSort {
             if (high - low <= threshold) {
                 // sequential sort
                 mergeSort(low, high);
-//                Arrays.sort(values, low, high);
                 return;
             }
 

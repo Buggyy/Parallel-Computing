@@ -1,55 +1,28 @@
-package algorithm;
-
-import util.Sorter;
+package mergesort;
 
 /**
  * Created by IntelliJ IDEA
  * User: Kevin
- * Date: 5/17/2017
- * Time: 4:10 PM
+ * Date: 5/16/2017
+ * Time: 5:48 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ParallelMergeSort {
 
-    private static int[] numbers;
-    private static int[] helper;
+// @Stefan, vervangen met jouw oude mergeSort in de map first assignmentS?
+public class MergeSort {
+    private int[] numbers;
+    private int[] helper;
 
-    private static int number;
+    private int number;
 
-    public static void parallelMergeSort(int[] values) {
-        numbers = values;
+    public void sort(int[] values) {
+        this.numbers = values;
         number = values.length;
-        helper = new int[number];
-
-        parallelMergeSort(0, number - 1, Runtime.getRuntime().availableProcessors());
+        this.helper = new int[number];
+        mergeSort(0, number - 1);
     }
 
-    public static void parallelMergeSort(int low, int high, int threads) {
-        if (threads <= 1) {
-            mergeSort(low, high); //normal mergesort
-        } else if (number > 2) {
-            if (low < high) {
-                int middle = low + (high - low) / 2;
-
-                Thread leftThread = new Thread(new Sorter(low, middle, threads / 2));
-                Thread rightThread = new Thread(new Sorter(middle + 1, high, threads / 2));
-
-                leftThread.start();
-                rightThread.start();
-
-                try {
-                    leftThread.join();
-                    rightThread.join();
-                } catch (InterruptedException ignored) {
-
-                }
-
-                merge(low, middle, high);
-            }
-        }
-    }
-
-    protected static void mergeSort(int low, int high) {
+    protected void mergeSort(int low, int high) {
         // check if low is smaller than high, if not then the array is sorted
         if (low < high) {
             // Get the index of the element which is in the middle
@@ -63,7 +36,7 @@ public class ParallelMergeSort {
         }
     }
 
-    protected static void merge(int low, int middle, int high) {
+    protected void merge(int low, int middle, int high) {
         // Copy both parts into the helper array
         System.arraycopy(numbers, low, helper, low, high + 1 - low);
 

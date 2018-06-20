@@ -1,12 +1,11 @@
 package rmi;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Kevin
- * Date: 5/31/2017
- * Time: 12:56 PM
- * To change this template use File | Settings | File Templates.
+ * Maintained and created by:
+ * S. R. Lobato
+ * C. Verra
  */
+// @Stefan, onveranderd, maybe kan jij hier nog iets geks op bedenken?
 public interface Task<T> {
 
     T execute();

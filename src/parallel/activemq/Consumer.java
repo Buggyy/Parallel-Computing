@@ -1,20 +1,18 @@
 package activemq;
 
-import algorithm.ConcurrentMergeSort;
+import mergesort.ConcurrentMergeSort;
+import utilities.Utilities;
 import org.apache.activemq.ActiveMQConnectionFactory;
-import util.Utils;
-
 import javax.jms.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA
- * User: Kevin
- * Date: 6/3/2017
- * Time: 11:45 AM
- * To change this template use File | Settings | File Templates.
+ * Maintained and created by:
+ * S. R. Lobato
+ * C. Verra
  */
+
 public class Consumer {
     // either connect to the remote ActiveMQ running on the PI, or on the localhost
 //    private static String url = "failover:(tcp://169.254.1.1:61616,localhost:8161)";
@@ -25,6 +23,7 @@ public class Consumer {
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(url);
         Connection connection = connectionFactory.createConnection();
         connection.start();
+
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         Destination destination = session.createQueue(subject);
         MessageConsumer consumer = session.createConsumer(destination);
@@ -58,9 +57,7 @@ public class Consumer {
                 }
             }
         }
-
-//        System.out.println("Closing connection on " + LocalDateTime.now());
-
+        
 //        connection.close();
     }
 }

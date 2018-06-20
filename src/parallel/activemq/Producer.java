@@ -1,18 +1,15 @@
 package activemq;
 
+import static utilities.Utilities.*;
 import org.apache.activemq.ActiveMQConnectionFactory;
-
 import javax.jms.*;
 
-import static util.Utils.*;
-
 /**
- * Created by IntelliJ IDEA
- * User: Kevin
- * Date: 6/3/2017
- * Time: 11:45 AM
- * To change this template use File | Settings | File Templates.
+ * Maintained and created by:
+ * S. R. Lobato
+ * C. Verra
  */
+
 public class Producer {
     // either connect to the remote ActiveMQ running on the PI, or on the localhost
 //    private static String url = "failover:(tcp://169.254.1.1:61616,localhost:8161)";

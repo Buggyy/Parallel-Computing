@@ -1,25 +1,23 @@
 package rmi;
 
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.net.InetAddress;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Kevin
- * Date: 5/31/2017
- * Time: 12:52 PM
- * To change this template use File | Settings | File Templates.
+ * Maintained and created by:
+ * S. R. Lobato
+ * C. Verra
  */
+
 public class Server extends UnicastRemoteObject implements Service {
-
+    //@Stefan, wat naamgevingen veranderd
     private static final int port = 2000;
-    private static final String serviceName = "Test";
-    static final String masterNodeName = "Kevin";
+    private static final String serviceName = "testing";
+    private static String hostName;
 
-    private static String localHostname;
 
     private Task task;
 
@@ -30,13 +28,13 @@ public class Server extends UnicastRemoteObject implements Service {
         Service remoteService = null;
 
         try {
-            System.out.println("Connecting to " + host);
+            System.out.println("verbinden met " + host); // kan dit weg?
 
-            Registry r = LocateRegistry.getRegistry(host, port);
-            remoteService = (Service) r.lookup(serviceName);
+            Registry registry = LocateRegistry.getRegistry(host, port);
+            remoteService = (Service) registry.lookup(serviceName);
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
 
         return remoteService;
@@ -44,20 +42,17 @@ public class Server extends UnicastRemoteObject implements Service {
 
     public static void main(String[] args) {
         try {
-            // get the hostname of this node
-            localHostname = InetAddress.getLocalHost().getHostName();
-
-            // start a new server object
+            //hostname ophalen
+            hostName = InetAddress.getLocalHost().getHostName();
+            // sercer object starten
             Server server = new Server();
 
-            // start the registry service on this node
+            // registery starten
             Registry registry = LocateRegistry.createRegistry(port);
-
-            // add binding to this server object and use a specific ServiceName to reference it
+            // server aan object binden aan de hand van servicenaam
             registry.bind(serviceName, server);
-
-
-            System.out.println(serviceName + " running on " + localHostname);
+            // sout
+            System.out.println(serviceName + " gestart op " + hostName); // kan dit weg?
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,15 +63,6 @@ public class Server extends UnicastRemoteObject implements Service {
         return;
     }
 
-    public String sendMessage(String message) throws RemoteException {
-        System.out.println("echo: " + message);
-        return message + " received at " + localHostname;
-    }
-
-    public <T> T executeTask(Task<T> t) throws RemoteException {
-        return t.execute();
-    }
-
     public void setTask(Task task) throws RemoteException {
         this.task = task;
     }
@@ -84,4 +70,16 @@ public class Server extends UnicastRemoteObject implements Service {
     public Task getTask() throws RemoteException {
         return task;
     }
+
+    public <T> T executeTask(Task<T> t) throws RemoteException {
+        return t.execute();
+    }
+
+    public String sendMessage(String message) throws RemoteException {
+        System.out.println("bericht: " + message);
+        return message + " ontvangen door " + hostName;
+    }
+
+
+
 }

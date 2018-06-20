@@ -1,18 +1,18 @@
 package utilities;
 
 /**
- * Created by IntelliJ IDEA
- * User: Kevin
- * Date: 5/16/2017
- * Time: 5:58 PM
- * To change this template use File | Settings | File Templates.
+ * Maintained and created by:
+ * S. R. Lobato
+ * C. Verra
  */
-public class EventProfiler {
+
+// @Stefan, alleen class renamed, denk dat dit alleen voor logs nodig is namelijk
+public class Logger {
 
     private long previousTimeStamp = -1;
     private boolean showLog = false;
 
-    public EventProfiler(boolean showLog) {
+    public Logger(boolean showLog) {
         this.showLog = showLog;
     }
 

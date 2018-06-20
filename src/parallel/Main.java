@@ -7,6 +7,7 @@ import utilities.EventProfiler;
  * C. Verra
  */
 
+// @Stefan, alleen commets weg gehaald
 public final class Main {
 
     private static final int RUNS = 6;
@@ -28,20 +29,5 @@ public final class Main {
 
         System.out.println(Arrays.toString(array));
 
-//        for (int i = 0; i < RUNS; i++) {
-//            int[] array = Utilities.fillArray(ARRAY_LENGTH);
-//
-//            Utilities.fisherYatesArrayShuffle(array);
-//
-//            final ConcurrentMergeSort concurrentMergeSort = new ConcurrentMergeSort(array);
-//
-//            eventProfiler.start();
-//            concurrentMergeSort.sort();
-//            eventProfiler.log("Concurrent merge sort [" + ARRAY_LENGTH + "] sort done");
-//
-//            System.out.println(Utilities.isArraySorted(array));
-//
-//            ARRAY_LENGTH *= 2;
-//        }
     }
 }

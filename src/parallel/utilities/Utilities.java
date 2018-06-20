@@ -1,5 +1,4 @@
 package utilities;
-
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -15,7 +14,7 @@ public class Utilities {
     // en
     // https://stackoverflow.com/questions/47005560/difference-between-fisher-yates-shuffle-and-reservoir-sampling
     // Gebruik maken van fisyer yates
-    public static void fisherYatesArrayShuffle(int[] arrayToShuffle) {
+    public static void arrayShuffler(int[] arrayToShuffle) {
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
         for (int i = arrayToShuffle.length - 1; i > 0; i--) {
             int index = rnd.nextInt(i + 1);
