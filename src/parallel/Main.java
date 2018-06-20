@@ -39,7 +39,7 @@ public final class Main {
 //            concurrentMergeSort.sort();
 //            eventProfiler.log("Concurrent merge sort [" + ARRAY_LENGTH + "] sort done");
 //
-//            System.out.println(Utilities.isSorted(array));
+//            System.out.println(Utilities.isArraySorted(array));
 //
 //            ARRAY_LENGTH *= 2;
 //        }

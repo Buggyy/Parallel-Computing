@@ -9,17 +9,20 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 
 public class Utilities {
-    // source: http://stackoverflow.com/questions/1519736/random-shuffling-of-an-array
-    // Using Fisher Yates
-    public static void fisherYatesArrayShuffle(int[] ar) {
-        // If running on Java 6 or older, use `new Random()` on RHS here
+
+    // @Stefan, bron er bij, rename van functie
+    // bron: http://stackoverflow.com/questions/1519736/random-shuffling-of-an-array
+    // en
+    // https://stackoverflow.com/questions/47005560/difference-between-fisher-yates-shuffle-and-reservoir-sampling
+    // Gebruik maken van fisyer yates
+    public static void fisherYatesArrayShuffle(int[] arrayToShuffle) {
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
-        for (int i = ar.length - 1; i > 0; i--) {
+        for (int i = arrayToShuffle.length - 1; i > 0; i--) {
             int index = rnd.nextInt(i + 1);
-            // Simple swap -> RKO: use swap
-            int a = ar[index];
-            ar[index] = ar[i];
-            ar[i] = a;
+            // Simple swap
+            int a = arrayToShuffle[index];
+            arrayToShuffle[index] = arrayToShuffle[i];
+            arrayToShuffle[i] = a;
         }
     }
 
@@ -45,7 +48,8 @@ public class Utilities {
         return result;
     }
 
-    public static boolean isFilledArray(int[] array) {
+    // @Stefan, functie renamed
+    public static boolean arrayHasValue(int[] array) {
         for (int i = 0; i < array.length; i++) {
             if (array[i] != i)
                 return false;
@@ -59,34 +63,44 @@ public class Utilities {
         }
     }
 
-    public static boolean isSorted(int[] a) {
+    // @Stefan, renamed func, bron toegevoegd
+    // bron: https://stackoverflow.com/questions/19458278/check-if-an-array-is-sorted-return-true-or-false
+
+    public static boolean isArraySorted(int[] a) {
         for (int i = 1; i < a.length; i++)
             if (a[i] < a[i - 1]) return false;
         return true;
     }
-
+    // Stefan onveranderd, alleen stringbuilder renamed
     public static String arrayToString(int[] a) {
-        StringBuilder builder = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         for (int i : a) {
-            builder.append(String.format("%s ", i));
+            sb.append(String.format("%s ", i));
         }
-        return String.join(" ", builder.toString());
+        return String.join(" ", sb.toString());
     }
 
-    //https://gist.github.com/lesleh/7724554
-    public static int[][] chunkArray(int[] array, int chunkSize) {
-        int numOfChunks = (int) Math.ceil((double) array.length / chunkSize);
-        int[][] output = new int[numOfChunks][];
+    // @Stefan, nieuwe bron, refacored code
+    // functie om de array te splitten in opgegeven sizen
+    // geinspireerd door @GameDroids: https://stackoverflow.com/questions/27857011/how-to-split-a-string-array-into-small-chunk-arrays-in-java/27857141
+    public static int[][] createChunksOfArray(int[] arrayToSplit, int chunkSize) {
 
-        for (int i = 0; i < numOfChunks; ++i) {
-            int start = i * chunkSize;
-            int length = Math.min(array.length - start, chunkSize);
-
-            int[] temp = new int[length];
-            System.arraycopy(array, start, temp, 0, length);
-            output[i] = temp;
+        if(chunkSize <= 0) {
+            return null;
         }
 
-        return output;
+        int chunks = (int) arrayToSplit.length / chunkSize + (rest > 0 ? 1 : 0);
+        int[][] chunkedArrays = new int[chunks][];
+
+        for (int i = 0; i < chunks; ++i) {
+            int start = i * chunkSize;
+            int length = Math.min(arrayToSplit.length - start, chunkSize);
+
+            int[] copyArray = new int[length];
+            System.arraycopy(arrayToSplit, start, copyArray, 0, length);
+            chunkedArrays[i] = copyArray;
+        }
+
+        return chunkedArrays;
     }
 }
