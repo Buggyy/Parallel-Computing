@@ -1,26 +1,25 @@
-package activemq;
+package java.activemq;
 
 import mergesort.ConcurrentMergeSort;
 import utilities.Utilities;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import javax.jms.*;
 
+import static java.utilities.Config.ACTIVEMQ_URL;
+
 /**
  * Maintained and created by:
- * S. R. Lobato
+ * R. Lobato
  * C. Verra
  */
 
 public class SortStringFromQueue {
 
-    // either connect to the remote ActiveMQ running on the PI, or on the localhost
-//    private static String url = "failover:(tcp://169.254.1.1:61616,localhost:8161)";
-    private static String url = "failover:(tcp://169.253.1.1:61616,tcp://localhost:61616)"; // hier andere ip maken i guess? even van iemand anders weer checken of dat t zelfd emoet zijn?
-    private static String subjectFrom = "testQueue1"; // anderenamen hier
+    private static String subjectFrom = "testQueue1"; // @Raf anderenamen hier
     private static String subjectTo = "testQueue2";
 
     public static void main(String args[]) throws Exception {
-        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(url);
+        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
         Connection connection = connectionFactory.createConnection();
         connection.start();
 
@@ -52,7 +51,7 @@ public class SortStringFromQueue {
         ConcurrentMergeSort concurrentMergeSort = new ConcurrentMergeSort(integerList);
         concurrentMergeSort.sort();
 
-        String consumerString = Utils.arrayToString(integerList);
+        String consumerString = Utilities.arrayToString(integerList != null ? integerList : new int[0]);
 
         System.out.println(consumerString); // kan weg?
 

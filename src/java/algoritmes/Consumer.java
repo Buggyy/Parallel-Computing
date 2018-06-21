@@ -1,15 +1,15 @@
-package com.hva;
+package java.algoritmes;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
 
-import static com.hva.BucketSortfromQueue.ACTIVEMQ_URL;
+import static java.algoritmes.BucketSortfromQueue.ACTIVEMQ_URL;
 
 /**
  * The ActiveMQ Consumer Class
  * Maintained and created by:
- * S. R. Lobato
+ * R. Lobato
  */
 public class Consumer {
     //    Queue name of Consumer

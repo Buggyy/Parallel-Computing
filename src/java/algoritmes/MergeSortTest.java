@@ -1,4 +1,4 @@
-package com.hva;
+package java.algoritmes;
 
 import org.junit.Before;
 

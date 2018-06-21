@@ -1,11 +1,11 @@
-package mergesort;
+package java.algoritmes;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
 /**
  * Maintained and created by:
- * S. R. Lobato
+ * R. Lobato
  * C. Verra
  */
 //@Stefan, ook class renamen?
@@ -13,6 +13,9 @@ public class ConcurrentMergeSort {
 
     private final ForkJoinPool pool = new ForkJoinPool();
     private final int[] values;
+
+    private static MergeSort mergeSort = new MergeSort();
+
 
     public ConcurrentMergeSort(int[] values) {
         this.values = values;
@@ -46,7 +49,7 @@ public class ConcurrentMergeSort {
         protected void compute() {
             if (high - low <= threshold) {
                 // sequential sort
-                mergeSort(low, high);
+                mergeSort.mergesort(low, high);
                 return;
             }
 
@@ -58,49 +61,7 @@ public class ConcurrentMergeSort {
 
                 invokeAll(t1, t2);
 
-                merge(low, middle, high);
-            }
-        }
-
-        private void mergeSort(int low, int high) {
-            // check if low is smaller than high, if not then the array is sorted
-            if (low < high) {
-                // Get the index of the element which is in the middle
-                int middle = low + (high - low) / 2;
-                // Sort the left side of the array
-                mergeSort(low, middle);
-                // Sort the right side of the array
-                mergeSort(middle + 1, high);
-                // Combine them both
-                merge(low, middle, high);
-            }
-        }
-
-        private void merge(int low, int middle, int high) {
-            // Copy both parts into the helper array
-            System.arraycopy(values, low, helper, low, high + 1 - low);
-
-            int i = low;
-            int j = middle + 1;
-            int k = low;
-            // Copy the smallest values from either the left or the right side back
-            // to the original array
-
-            while (i <= middle && j <= high) {
-                if (helper[i] <= helper[j]) {
-                    values[k] = helper[i];
-                    i++;
-                } else {
-                    values[k] = helper[j];
-                    j++;
-                }
-                k++;
-            }
-            // Copy the rest of the left side of the array into the target array
-            while (i <= middle) {
-                values[k] = helper[i];
-                k++;
-                i++;
+                mergeSort.merge(low, middle, high);
             }
         }
     }

@@ -3,17 +3,17 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Maintained and created by:
- * S. R. Lobato
+ * R. Lobato
  * C. Verra
  */
 
 public class Utilities {
 
-    // @Stefan, bron er bij, rename van functie
-    // bron: http://stackoverflow.com/questions/1519736/random-shuffling-of-an-array
-    // en
-    // https://stackoverflow.com/questions/47005560/difference-between-fisher-yates-shuffle-and-reservoir-sampling
-    // Gebruik maken van fisyer yates
+    /**
+     * Source: http://stackoverflow.com/questions/1519736/random-shuffling-of-an-array
+     * & https://stackoverflow.com/questions/47005560/difference-between-fisher-yates-shuffle-and-reservoir-sampling
+     * @param arrayToShuffle
+     */
     public static void arrayShuffler(int[] arrayToShuffle) {
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
         for (int i = arrayToShuffle.length - 1; i > 0; i--) {
@@ -25,12 +25,22 @@ public class Utilities {
         }
     }
 
+    /**
+     * 
+     * @param ar
+     * @param i
+     * @param j
+     */
     public static void swap(int[] ar, int i, int j) {
         int temp = ar[i];
         ar[i] = ar[j];
         ar[j] = temp;
     }
 
+    /**
+     * 
+     * @param anArray
+     */
     public static void printArray(int[] anArray) {
         System.out.print("Array: ");
         for (int i = 0; i < anArray.length; i++) {
@@ -39,15 +49,24 @@ public class Utilities {
         System.out.println();
     }
 
-    public static int[] fillArray(int amount) {
-        int[] result = new int[amount];
-        for (int i = 0; i < amount; i++) {
+    /**
+     * Generate an array with given size
+     * @param size to fill array
+     * @return int array with given size
+     */
+    public static int[] generateArray(int size) {
+        int[] result = new int[size];
+        for (int i = 0; i < size; i++) {
             result[i] = i;
         }
         return result;
     }
 
-    // @Stefan, functie renamed
+    /**
+     *
+     * @param array
+     * @return
+     */
     public static boolean arrayHasValue(int[] array) {
         for (int i = 0; i < array.length; i++) {
             if (array[i] != i)
@@ -56,21 +75,34 @@ public class Utilities {
         return true;
     }
 
+    /**
+     *
+     * @param anArray
+     * @param value
+     */
     public static void addValue(int[] anArray, int value) {
         for (int i = 0; i < anArray.length; i++) {
             anArray[i] += value;
         }
     }
 
-    // @Stefan, renamed func, bron toegevoegd
-    // bron: https://stackoverflow.com/questions/19458278/check-if-an-array-is-sorted-return-true-or-false
 
+    /**
+     * Source: https://stackoverflow.com/questions/19458278/check-if-an-array-is-sorted-return-true-or-false
+     * @param a int Array to check if it's sorted
+     * @return true if given array is sorted
+     */
     public static boolean isArraySorted(int[] a) {
         for (int i = 1; i < a.length; i++)
             if (a[i] < a[i - 1]) return false;
         return true;
     }
-    // Stefan onveranderd, alleen stringbuilder renamed
+
+    /**
+     *
+     * @param a
+     * @return
+     */
     public static String arrayToString(int[] a) {
         StringBuilder sb = new StringBuilder();
         for (int i : a) {
@@ -79,16 +111,20 @@ public class Utilities {
         return String.join(" ", sb.toString());
     }
 
-    // @Stefan, nieuwe bron, refacored code
-    // functie om de array te splitten in opgegeven sizen
-    // geinspireerd door @GameDroids: https://stackoverflow.com/questions/27857011/how-to-split-a-string-array-into-small-chunk-arrays-in-java/27857141
+    /**
+     * @GameDroids: https://stackoverflow.com/questions/27857011/how-to-split-a-string-array-into-small-chunk-arrays-in-java/27857141
+     * @param arrayToSplit
+     * @param chunkSize
+     * @return
+     */
     public static int[][] createChunksOfArray(int[] arrayToSplit, int chunkSize) {
 
         if(chunkSize <= 0) {
             return null;
         }
 
-        int chunks = (int) arrayToSplit.length / chunkSize + (rest > 0 ? 1 : 0);
+        int chunks = (int) Math.ceil((double) arrayToSplit.length / chunkSize);
+
         int[][] chunkedArrays = new int[chunks][];
 
         for (int i = 0; i < chunks; ++i) {

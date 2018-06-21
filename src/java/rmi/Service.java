@@ -1,14 +1,10 @@
-package rmi;
-
-import java.rmi.Remote;
-import java.rmi.RemoteException;
+package java.rmi;
 
 /**
  * Maintained and created by:
- * S. R. Lobato
+ * R. Lobato
  * C. Verra
  */
-// @Stefan, niks veranderd
 public interface Service extends Remote {
 
     void ping() throws RemoteException;

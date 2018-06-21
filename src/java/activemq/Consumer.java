@@ -1,4 +1,4 @@
-package activemq;
+package java.activemq;
 
 import mergesort.ConcurrentMergeSort;
 import utilities.Utilities;
@@ -9,18 +9,14 @@ import java.util.List;
 
 /**
  * Maintained and created by:
- * S. R. Lobato
+ * R. Lobato
  * C. Verra
  */
-
 public class Consumer {
-    // either connect to the remote ActiveMQ running on the PI, or on the localhost
-//    private static String url = "failover:(tcp://169.254.1.1:61616,localhost:8161)";
-    private static String url = "failover:(tcp://169.254.1.1:61616,tcp://localhost:61616)";
-    private static String subject = "result";
+    private static String subject = "resultaat";
 
     public static void main(String[] args) throws JMSException {
-        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(url);
+        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
         Connection connection = connectionFactory.createConnection();
         connection.start();
 
@@ -39,8 +35,9 @@ public class Consumer {
                 count++;
                 TextMessage textMessage = (TextMessage) message;
 
+                // Storing the string of numbers retrieved from the queue
                 String str = textMessage.getText();
-                String[] integerStrings = str.split(" ");  //to store the string of numbers retrieved from the queue
+                String[] integerStrings = str.split(" ");
 
                 for (String integerString : integerStrings) {
                     int j = Integer.parseInt(integerString);
@@ -52,12 +49,14 @@ public class Consumer {
                     ConcurrentMergeSort concurrentMergeSort = new ConcurrentMergeSort(array);
                     concurrentMergeSort.sort();
 
-                    System.out.println("Is it sorted?");
-                    System.out.println(Utils.isSorted(array));
+                    System.out.println("Is the array sorted? --> " + Utilities.isArraySorted(array));
+
+                    if (Utilities.isArraySorted(array))
+                        break;
                 }
             }
         }
-        
-//        connection.close();
+
+        connection.close();
     }
 }

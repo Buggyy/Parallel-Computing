@@ -1,4 +1,4 @@
-package com.hva;
+package java.algoritmes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Maintained and created by:
- * S. R. Lobato
+ * R. Lobato
  */
 class BucketSort {
 

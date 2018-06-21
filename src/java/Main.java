@@ -1,13 +1,13 @@
+package java;
+
 import java.util.Arrays;
-import utilities.EventProfiler;
 
 /**
  * Maintained and created by:
- * S. R. Lobato
+ * R. Lobato
  * C. Verra
  */
 
-// @Stefan, alleen commets weg gehaald
 public final class Main {
 
     private static final int RUNS = 6;
@@ -15,7 +15,7 @@ public final class Main {
 
 
     public static void main(final String... args) {
-        final EventProfiler eventProfiler = new EventProfiler(true);
+        final utilities.Logger eventProfiler = new utilities.Logger(true);
 
         int[] array = {0, 1, 2, 3, 4, 5, 6, 7};
 

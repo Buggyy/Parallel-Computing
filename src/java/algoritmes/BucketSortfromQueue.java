@@ -1,17 +1,18 @@
-package com.hva;
+package java.algoritmes;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
 import java.util.Arrays;
 
+import static java.utilities.Config.ACTIVEMQ_URL;
+
 /**
  * The ActiveMQ using the BucketSort algorithm
  * Maintained and created by:
- * S. R. Lobato
+ * R. Lobato
  */
 public class BucketSortfromQueue {
-    static final String ACTIVEMQ_URL = "failover:(tcp://127.0.0.1:61616,localhost:8161)";
 
     private static String subjectFrom = "testQueue1";
     private static String subjectTo = "testQueue2";

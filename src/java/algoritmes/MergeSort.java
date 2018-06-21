@@ -1,8 +1,8 @@
-package com.hva;
+package java.algoritmes;
 
 /**
  * Maintained and created by:
- * S. R. Lobato
+ * R. Lobato
  */
 public class MergeSort {
     private int[] numbers;
@@ -17,7 +17,7 @@ public class MergeSort {
         mergesort(0, number - 1);
     }
 
-    private void mergesort(int low, int high) {
+    protected void mergesort(int low, int high) {
         // check if low is smaller than high, if not then the array is sorted
         if (low < high) {
             // Get the index of the element which is in the middle
@@ -31,7 +31,7 @@ public class MergeSort {
         }
     }
 
-    private void merge(int low, int middle, int high) {
+    protected void merge(int low, int middle, int high) {
 
         // Copy both parts into the helper array
         for (int i = low; i <= high; i++) {

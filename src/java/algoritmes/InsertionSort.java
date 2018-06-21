@@ -1,8 +1,8 @@
-package com.hva;
+package java.algoritmes;
 
 /**
  * Maintained and created by:
- * S. R. Lobato
+ * R. Lobato
  */
 class InsertionSort {
     static <T extends Comparable<T>> void sort(T[] array) {

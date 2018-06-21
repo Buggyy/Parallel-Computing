@@ -1,4 +1,4 @@
-package rmi;
+package java.rmi;
 
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
@@ -8,12 +8,11 @@ import java.rmi.registry.LocateRegistry;
 
 /**
  * Maintained and created by:
- * S. R. Lobato
+ * R. Lobato
  * C. Verra
  */
 
 public class Server extends UnicastRemoteObject implements Service {
-    //@Stefan, wat naamgevingen veranderd
     private static final int port = 2000;
     private static final String serviceName = "testing";
     private static String hostName;

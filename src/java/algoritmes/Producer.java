@@ -1,4 +1,4 @@
-package com.hva;
+package java.algoritmes;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
@@ -6,13 +6,13 @@ import javax.jms.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static com.hva.BucketSortfromQueue.ACTIVEMQ_URL;
+import static java.algoritmes.BucketSortfromQueue.ACTIVEMQ_URL;
 
 /**
  * The ActiveMQ Producer Class
  * <p>
  * Maintained and created by:
- * S. R. Lobato
+ * R. Lobato
  */
 public class Producer {
     //    Queue name of Producer

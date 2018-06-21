@@ -1,4 +1,4 @@
-package rmi;
+package java.rmi;
 
 import algorithm.ConcurrentMergeSort;
 import utilities.Utilities;
@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 /**
  * Maintained and created by:
- * S. R. Lobato
+ * R. Lobato
  * C. Verra
  */
 
