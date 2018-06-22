@@ -24,15 +24,19 @@ public class Server extends UnicastRemoteObject implements Service {
 	private Server() throws RemoteException {
 	}
 
-	static Service connect(String host) {
-		Service remoteService = null;
-
-		try {
-			LOGGER.info("Connectie met " + host);
+    /**
+     *
+     * @param host om mee te verbinden
+     * @return Service
+     */
+    static Service connect(String host) {
+        Service remoteService = null;
 
 			Registry registry = LocateRegistry.getRegistry(host, PORT);
 			remoteService = (Service) registry.lookup(SERVICE_NAME);
 
+			try {
+				LOGGER.info("Connectie met " + host);
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
@@ -47,6 +51,13 @@ public class Server extends UnicastRemoteObject implements Service {
 
 			// Server object starten
 			Server server = new Server();
+
+    public static void main(String[] args) {
+        try {
+            //hostname ophalen
+            hostName = InetAddress.getLocalHost().getHostName();
+            // server object starten
+            Server server = new Server();
 
 			// Registery starten
 			Registry registry = LocateRegistry.createRegistry(PORT);
@@ -71,6 +82,8 @@ public class Server extends UnicastRemoteObject implements Service {
 	public Task getTask() {
 		return task;
 	}
+
+
 
 	public <T> T executeTask(Task<T> t) {
 		return t.execute();

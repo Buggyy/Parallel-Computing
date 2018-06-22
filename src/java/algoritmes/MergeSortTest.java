@@ -17,6 +17,10 @@ public class MergeSortTest {
     private final static int MAX = 20;
     private int[] numbers;
 
+    /**
+     * setup functie
+     * @throws Exception
+     */
     @Before
     public void setUp() throws Exception {
         numbers = new int[SIZE];
@@ -39,7 +43,7 @@ public class MergeSortTest {
 
         for (int i = 0; i < numbers.length - 1; i++) {
             if (numbers[i] > numbers[i + 1]) {
-                fail("Should not happen");
+                fail("Dit hoort niet");
             }
         }
         assertTrue(true);
@@ -58,7 +62,7 @@ public class MergeSortTest {
             sorter.sort(numbers);
             for (int j = 0; j < numbers.length - 1; j++) {
                 if (numbers[j] > numbers[j + 1]) {
-                    fail("Should not happen");
+                    fail("Dit hoort niet");
                 }
             }
             assertTrue(true);
@@ -71,15 +75,14 @@ public class MergeSortTest {
         Arrays.sort(numbers);
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
-        System.out.println("Standard Java sort " + elapsedTime);
+        System.out.println("Standaard Java sorteren " + elapsedTime);
 
         for (int i = 0; i < numbers.length - 1; i++) {
             if (numbers[i] > numbers[i + 1]) {
-                fail("Should not happen");
+                fail("Dit hoort niet");
             }
         }
         assertTrue(true);
     }
-
 
 }

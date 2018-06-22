@@ -4,12 +4,16 @@ package utilities;
  * AUTHOR: R. Lobato & C. Verra
  */
 
-// @Stefan, alleen class renamed, denk dat dit alleen voor logs nodig is namelijk
+
 public class Logger {
 
     private long previousTimeStamp = -1;
     private boolean showLog = false;
 
+    /**
+     *
+     * @param showLog
+     */
     public Logger(boolean showLog) {
         this.showLog = showLog;
     }
@@ -27,6 +31,11 @@ public class Logger {
         return previousTimeStamp;
     }
 
+    /**
+     *
+     * @param label
+     * @return previous timestamp
+     */
     public long log(String label) {
         long thisTimeStamp = System.nanoTime();
         long duration = thisTimeStamp - previousTimeStamp;

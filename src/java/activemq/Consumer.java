@@ -37,7 +37,7 @@ public class Consumer {
                 count++;
                 TextMessage textMessage = (TextMessage) message;
 
-                // Storing the string of numbers retrieved from the queue
+                // sorteren van de string van nummers ontvangen van de queue
                 String str = textMessage.getText();
                 String[] integerStrings = str.split(" ");
 
@@ -50,9 +50,6 @@ public class Consumer {
                     int[] array = list.stream().mapToInt(i -> i).toArray();
                     ConcurrentMergeSort concurrentMergeSort = new ConcurrentMergeSort(array);
                     concurrentMergeSort.sort();
-
-
-                    System.out.println("Is the array sorted? --> " + CustomUtilities.isArraySorted(array));
 
                     if (CustomUtilities.isArraySorted(array))
                         break;

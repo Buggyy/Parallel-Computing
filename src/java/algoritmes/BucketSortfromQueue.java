@@ -34,14 +34,14 @@ public class BucketSortfromQueue {
         Integer[] arrayToSort = null;
 
         if (message instanceof TextMessage) {
-            System.out.println("Retrieving Message from testQueue2.\n");
+            System.out.println("Ophalen Message van testQueue2.\n");
 
             TextMessage textMessage = (TextMessage) message;
-            //  Get String array back
+            //  krijg stringarray terug
             String strArrayFromQueue = textMessage.getText();
 
-            //  Store string integers retrieved from queue
-            //  Clean the output
+            //  opslaan stringintegers van queue
+            //  output opschonen
             String[] integers = strArrayFromQueue
                     .replaceAll("\\[", "")
                     .replaceAll("\\]", "")
@@ -50,7 +50,7 @@ public class BucketSortfromQueue {
 
             arrayToSort = new Integer[integers.length];
 
-            System.out.println("Turning String Array into Integer Array.\n");
+            System.out.println("String array naar integer array omzetten.\n");
 
             for (int i = 0; i < arrayToSort.length; i++) {
                 try {
@@ -60,13 +60,13 @@ public class BucketSortfromQueue {
                 }
             }
         } else {
-            System.err.println("Failed to get Message!");
+            System.err.println("Bericht ophalen niet gelukt");
         }
 
         Destination destination_toQueue = session.createQueue(TO_CSP);
         MessageProducer producer = session.createProducer(destination_toQueue);
 
-        //  Default Bucket Size = 5
+        //  Standaard Bucket Size = 5
         BucketSort.sort(arrayToSort);
 
         String stringForConsumer = Arrays.toString(arrayToSort);
@@ -77,10 +77,6 @@ public class BucketSortfromQueue {
 
 		LOGGER.info("Message sent to " + TO_CSP + ".\n");
 		LOGGER.info("Start Consumer.main() to continue..");
-
-		System.out.println("Message sent to testQueue2.\n");
-        System.out.println("Start Consumer.main() to continue..");
-
     }
 }
 

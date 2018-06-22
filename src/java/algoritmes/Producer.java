@@ -17,25 +17,29 @@ import static java.helper.Config.FROM_CSP;
  * AUTHOR: R. Lobato & C. Verra
  */
 public class Producer {
+
+    //    Queue naam van Producer
+    private static String subject = "testQueue1";
+
     public static void main(String[] args) throws JMSException {
 
-        System.out.println("Producer started.\n");
+        System.out.println("Producer gestart.\n");
 
-        //  Create scanner
+        //  maak scanner
         Scanner scanner = new Scanner(System.in);
 
-        //  Create test Integer[] Object
+        //  maak test Integer[] Object
         Integer[] arrayToSort;
 
-        System.out.println("Enter the amount of integers to generate: ");
+        System.out.println("hoeveelheid te genereren integers opgegven: ");
         int amountOfIntegers = scanner.nextInt();
 
-        System.out.println("Generating " + amountOfIntegers + " integers...\n");
+        System.out.println("genereren van " + amountOfIntegers + " integers...\n");
 
-        //  Fill test Array Object
+        //  vul test Array Object
         arrayToSort = GenerateArray(amountOfIntegers);
 
-        //  Create connection with ActiveMQ
+        //  maak verbinding met ActiveMQ
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
         Connection connection = connectionFactory.createConnection();
         connection.start();
@@ -44,31 +48,28 @@ public class Producer {
 
         //  Destination Queue for Producer
         Destination destination = session.createQueue(FROM_CSP);
+
         MessageProducer producer = session.createProducer(destination);
 
         TextMessage message = session.createTextMessage(Arrays.toString(arrayToSort));
         producer.send(message);
 
-        System.out.println("Message sent to producerQueue.\n");
-        System.out.println("Start BucketSortfromQueue.main() to continue..");
-
         connection.close();
     }
 
     /**
-     * Generate an Array with random Integers
+     * Genereer array met random integers
      *
      * @param amountOfIndexes
      * @return Generated Array
      */
     private static Integer[] GenerateArray(int amountOfIndexes) {
-        //  Generate Integer[] with given amount of indexes
+        //  Genereer Integer[] met opgegeven aantal indexes
         Integer[] numbers = new Integer[amountOfIndexes];
 
         for (int i = 0; i < numbers.length; i++) {
-
-            //  Fill index with a random number till the range of 100000
-            // (Integer.MAX_VALUE throws OutOfMemoryError: Java heap space exception)
+            // vul index met random nummer tot de 100000
+            //  bij java heap space exception een outofmemory error
             numbers[i] = (int) (Math.random() * 100000);
         }
 
@@ -76,7 +77,7 @@ public class Producer {
     }
 
     /**
-     * Check wether the input array is sorted or not
+     * kijken of de input array gesorteerd is of niet
      * @param listToBeChecked
      * @return true if array is sorted
      */

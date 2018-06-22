@@ -48,9 +48,9 @@ public class CustomUtilities {
     }
 
     /**
-     * Generate an array with given size
-     * @param size to fill array
-     * @return int array with given size
+     * Genereer array met gegevens size
+     * @param size om array te vullen
+     * @return int array met gegeven size
      */
     public static int[] generateArray(int size) {
         int[] result = new int[size];
@@ -87,8 +87,8 @@ public class CustomUtilities {
 
     /**
      * Source: https://stackoverflow.com/questions/19458278/check-if-an-array-is-sorted-return-true-or-false
-     * @param a int Array to check if it's sorted
-     * @return true if given array is sorted
+     * @param a int een array om te kijken of het gesorteerd is
+     * @return true, waneer het daadwerkelijk gesorteerd is
      */
     public static boolean isArraySorted(int[] a) {
         for (int i = 1; i < a.length; i++)
@@ -113,7 +113,7 @@ public class CustomUtilities {
      * @GameDroids: https://stackoverflow.com/questions/27857011/how-to-split-a-string-array-into-small-chunk-arrays-in-java/27857141
      * @param arrayToSplit
      * @param chunkSize
-     * @return
+     * @return een multidementionale array met array chunks
      */
     public static int[][] createChunksOfArray(int[] arrayToSplit, int chunkSize) {
 

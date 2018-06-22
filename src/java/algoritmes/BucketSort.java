@@ -12,19 +12,16 @@ import java.util.concurrent.TimeUnit;
  */
 class BucketSort {
 
-
     private static final int DEFAULT_BUCKET_SIZE = 5;
     private static int currentIndex = 0;
-
 
     static void sort(Integer[] array) {
         sort(array, DEFAULT_BUCKET_SIZE);
     }
-
     static void sort(Integer[] arrayToSort, int bucketSize) {
 
 
-        System.out.println("Performing BucketSort on " + arrayToSort.length + " integers \n");
+        System.out.println("Doe BucketSort met " + arrayToSort.length + " integers \n");
 
         //  Start timer
         final long startTime = System.nanoTime();
@@ -33,7 +30,7 @@ class BucketSort {
             return;
         }
 
-        // Determine minimum and maximum values
+        // Bepaal min en max waarden
         Integer minValue = arrayToSort[0];
         Integer maxValue = arrayToSort[0];
         for (int i = 1; i < arrayToSort.length; i++) {
@@ -44,8 +41,9 @@ class BucketSort {
             }
         }
 
-        //  Create an executor service with  a thread pool that creates new threads as needed,
-        //  but will reuse previously constructed threads when they are available
+
+        // Maak een executor service met een thread pool welke nieuwe threads maakt wanneer nodig,
+        // indien mogelijk hergebruik toepassen van threads
         ExecutorService executorService = Executors.newCachedThreadPool();
 
         Integer finalMinValue = minValue;
@@ -60,17 +58,14 @@ class BucketSort {
                 buckets.add(new ArrayList<>());
             }
 
-
-            // Distribute input array values into buckets
+            // input over buckets distribueren
             for (Integer anArrayElement : arrayToSort) {
                 buckets.get((anArrayElement - finalMinValue) / bucketSize).add(anArrayElement);
 
             }
-
-            //  Sort buckets and place back into input array
-            //  Loop through the contents of each bucket
+            // Sorteer buckets en stop het terug in input array
+            //  Loop door de content van elke bucket
             for (List<Integer> bucket : buckets) {
-
 
                 Integer[] bucketArray = new Integer[bucket.size()];
 
@@ -88,34 +83,31 @@ class BucketSort {
 
         try {
             System.out.println("--------------------------------------");
-            System.out.println("Attempt to shutdown executor");
+            System.out.println("Poging afsluiten executor");
             executorService.shutdown();
             executorService.awaitTermination(5, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
-            System.err.println("Tasks interrupted");
+            System.err.println("Taken onderbroken");
         } finally {
             if (!executorService.isTerminated()) {
-                System.err.println("Cancel non-finished tasks");
+                System.err.println("Annuleer niet afgemaakte taken");
             }
             executorService.shutdownNow();
-            System.out.println("Shutdown finished");
+            System.out.println("Shutdown klaar");
         }
 
         final long duration = System.nanoTime() - startTime;
         final double seconds = ((double) duration / 1000000000);
 
-
-        //  Calculate estimated measuring time
-        System.out.format("Estimated measuring time: %f seconds. \n\n\n", seconds);
+        // Bereken geschatte measure tijd
+        System.out.format("schatting measuring tijd: %f seconde. \n\n\n", seconds);
 
     }
 
     /**
-     * Synchronize the incrementation of the current index
+     * Synchroniseer de incrementatie van de huidige index
      */
     static synchronized void incrementSync() {
         currentIndex = currentIndex + 1;
     }
-
-
 }

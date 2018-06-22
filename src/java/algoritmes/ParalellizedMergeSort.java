@@ -14,6 +14,10 @@ public class ParalellizedMergeSort {
 
     private static MergeSort mergeSort = new MergeSort();
 
+    /**
+     *
+     * @param values
+     */
     public static void parallelizedMergeSort(int[] values) {
         numbers = values;
         number = values.length;
@@ -22,7 +26,13 @@ public class ParalellizedMergeSort {
         parallelizedMergeSort(0, number - 1, Runtime.getRuntime().availableProcessors());
     }
 
-    public static void parallelizedMergeSort(int low, int high, int threads) {
+    /**
+     *
+     * @param low
+     * @param high
+     * @param threads
+     */
+    private static void parallelizedMergeSort(int low, int high, int threads) {
         if (threads <= 1) {
             mergeSort.mergesort(low, high);
         } else if (number > 2) {

@@ -13,7 +13,6 @@ public class ConcurrentMergeSort {
 
     private static MergeSort mergeSort = new MergeSort();
 
-
     public ConcurrentMergeSort(int[] values) {
         this.values = values;
     }
@@ -34,6 +33,13 @@ public class ConcurrentMergeSort {
         private final int high;
         private final int threshold;
 
+        /**
+         *
+         * @param values
+         * @param low
+         * @param high
+         * @param threshold
+         */
         private MergeSortTask(int[] values, int low, int high, int threshold) {
             this.values = values;
             this.helper = new int[values.length];
@@ -45,7 +51,7 @@ public class ConcurrentMergeSort {
         @Override
         protected void compute() {
             if (high - low <= threshold) {
-                // sequential sort
+                // sequentiele sort
                 mergeSort.mergesort(low, high);
                 return;
             }

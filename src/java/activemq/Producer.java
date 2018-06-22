@@ -1,14 +1,18 @@
 package java.activemq;
 import org.apache.activemq.ActiveMQConnectionFactory;
+
 import javax.jms.*;
+
 import static java.helper.Config.ACTIVEMQ_URL;
-import static utilities.CustomUtilities.*;
+import static java.helper.CustomUtilities.*;
 
 /**
  * Parallel Computing
  * AUTHOR: R. Lobato & C. Verra
  */
 public class Producer {
+    // naam van de queue
+    private static String subject = "test1";
 
     static final int NODES = 2;
 
@@ -47,6 +51,6 @@ public class Producer {
         TextMessage message = session.createTextMessage(str);
         producer.send(message);
 
-        System.out.println("Sent Message");
+        System.out.println("Bericht verzonden");
     }
 }
