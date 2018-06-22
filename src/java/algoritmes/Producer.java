@@ -46,7 +46,7 @@ public class Producer {
 
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-        //  Destination Queue for Producer
+        //  bestemming van  Queue voor Producer
         Destination destination = session.createQueue(FROM_CSP);
 
         MessageProducer producer = session.createProducer(destination);

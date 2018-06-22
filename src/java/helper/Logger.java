@@ -41,7 +41,7 @@ public class Logger {
         long duration = thisTimeStamp - previousTimeStamp;
 
         if (showLog)
-            System.out.println(label + " takes " + duration / 1e6 + " ms");
+            System.out.println(label + " duurt " + duration / 1e6 + " ms");
 
         previousTimeStamp = thisTimeStamp;
 
