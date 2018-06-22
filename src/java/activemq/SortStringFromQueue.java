@@ -15,8 +15,8 @@ import static java.utilities.Config.ACTIVEMQ_URL;
 
 public class SortStringFromQueue {
 
-    private static String subjectFrom = "testQueue1"; // @Raf anderenamen hier
-    private static String subjectTo = "testQueue2";
+    private static String subjectFrom = "test1";
+    private static String subjectTo = "test2";
 
     public static void main(String args[]) throws Exception {
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
@@ -34,11 +34,13 @@ public class SortStringFromQueue {
 
         MessageConsumer messageConsumer = session.createConsumer(destination_fromQueue);
         Message message = messageConsumer.receive();
-        int[] integerList = null; // to hold the converted and sorted numbers
+        // bijhouden geconverte en gesorteerde nummers
+        int[] integerList = null;
         if (message instanceof TextMessage) {
             TextMessage message = (TextMessage) message;
             String string = message.getText();
-            String[] listOfIntegerStrings = string.split(" ");  //to store the string of numbers retrieved from the queue
+            // bijhouden string van nummers ontvangen van de queue
+            String[] listOfIntegerStrings = string.split(" ");
             integerList = new int[listOfIntegerStrings.length];
             for (int i = 0; i < integerList.length; i++) {
                 integerList[i] = Integer.parseInt(listOfIntegerStrings[i]);
@@ -53,9 +55,7 @@ public class SortStringFromQueue {
 
         String consumerString = Utilities.arrayToString(integerList != null ? integerList : new int[0]);
 
-        System.out.println(consumerString); // kan weg?
-
-        TextMessage messageTo = session.createTextMessage(consumerString); // ook renamen?
+        TextMessage messageTo = session.createTextMessage(consumerString);
         messageProducer.send(messageTo);
 
         //connection.close();

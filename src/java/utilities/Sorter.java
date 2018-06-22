@@ -12,6 +12,12 @@ public class Sorter implements Runnable {
     private int high;
     private int threads;
 
+    /**
+     *
+     * @param low
+     * @param high
+     * @param threads
+     */
     public Sorter(int low, int high, int threads) {
         this.low = low;
         this.high = high;

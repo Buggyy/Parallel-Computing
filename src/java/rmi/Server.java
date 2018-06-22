@@ -23,6 +23,11 @@ public class Server extends UnicastRemoteObject implements Service {
     private Server() throws RemoteException {
     }
 
+    /**
+     *
+     * @param host om mee te verbinden
+     * @return Service
+     */
     static Service connect(String host) {
         Service remoteService = null;
 
@@ -43,7 +48,7 @@ public class Server extends UnicastRemoteObject implements Service {
         try {
             //hostname ophalen
             hostName = InetAddress.getLocalHost().getHostName();
-            // sercer object starten
+            // server object starten
             Server server = new Server();
 
             // registery starten
@@ -62,6 +67,11 @@ public class Server extends UnicastRemoteObject implements Service {
         return;
     }
 
+    /**
+     *
+     * @param task
+     * @throws RemoteException
+     */
     public void setTask(Task task) throws RemoteException {
         this.task = task;
     }
@@ -70,10 +80,23 @@ public class Server extends UnicastRemoteObject implements Service {
         return task;
     }
 
+    /**
+     *
+     * @param t
+     * @param <T>
+     * @return
+     * @throws RemoteException
+     */
     public <T> T executeTask(Task<T> t) throws RemoteException {
         return t.execute();
     }
 
+    /**
+     *
+     * @param message
+     * @return String
+     * @throws RemoteException
+     */
     public String sendMessage(String message) throws RemoteException {
         System.out.println("bericht: " + message);
         return message + " ontvangen door " + hostName;

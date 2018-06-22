@@ -13,7 +13,8 @@ import static utilities.Utilities.*;
  */
 
 public class Producer {
-    private static String subject = "testQueue1"; // Queue Name
+    // naam van de queue
+    private static String subject = "test1";
 
     public static final int NODES = 2;
 
@@ -22,7 +23,6 @@ public class Producer {
         Connection connection = connectionFactory.createConnection();
         connection.start();
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-
 
         int[] array = generateArray(10);
         arrayShuffler(array);
@@ -39,6 +39,13 @@ public class Producer {
         connection.close();
     }
 
+    /**
+     *
+     * @param str
+     * @param session
+     * @param queue
+     * @throws JMSException
+     */
     private static void sendMessage(String str, Session session, String queue) throws JMSException {
         Destination destination = session.createQueue(queue);
         MessageProducer producer = session.createProducer(destination);
@@ -46,6 +53,6 @@ public class Producer {
         TextMessage message = session.createTextMessage(str);
         producer.send(message);
 
-        System.out.println("Sent Message");
+        System.out.println("Bericht verzonden");
     }
 }

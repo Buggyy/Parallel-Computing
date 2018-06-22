@@ -17,23 +17,34 @@ public class MergeSort {
         mergesort(0, number - 1);
     }
 
+    /**
+     *
+     * @param low
+     * @param high
+     */
     protected void mergesort(int low, int high) {
-        // check if low is smaller than high, if not then the array is sorted
+        // kijken of low kleiner is dan high, zo niet, dan is de array gesorteerd
         if (low < high) {
-            // Get the index of the element which is in the middle
+            // pak index van middelsgte element
             int middle = low + (high - low) / 2;
-            // Sort the left side of the array
+            // sorteer linkerzijde van de array
             mergesort(low, middle);
-            // Sort the right side of the array
+            // Sorteer rechterzijde van de array
             mergesort(middle + 1, high);
-            // Combine them both
+            // beide samenvoegen
             merge(low, middle, high);
         }
     }
 
+    /**
+     *
+     * @param low
+     * @param middle
+     * @param high
+     */
     protected void merge(int low, int middle, int high) {
 
-        // Copy both parts into the helper array
+        // kopier beide delen in de helper array
         for (int i = low; i <= high; i++) {
             helper[i] = numbers[i];
         }
@@ -41,8 +52,9 @@ public class MergeSort {
         int i = low;
         int j = middle + 1;
         int k = low;
-        // Copy the smallest values from either the left or the right side back
-        // to the original array
+
+        // Kopier de kleinste waarde van een van de kanten terug
+        // naar de originele array
         while (i <= middle && j <= high) {
             if (helper[i] <= helper[j]) {
                 numbers[k] = helper[i];
@@ -53,14 +65,14 @@ public class MergeSort {
             }
             k++;
         }
-        // Copy the rest of the left side of the array into the target array
+
+        // Kopier de rest van een van de kanten terug in de doel array
         while (i <= middle) {
             numbers[k] = helper[i];
             k++;
             i++;
         }
-        // Since we are sorting in-place any leftover elements from the right side
-        // are already at the right position.
-
+        // Omdat we in-place sorteren, sturen we de overige elmenten van de rechterzijde
+        // die al op de juiste plek zitten
     }
 }
