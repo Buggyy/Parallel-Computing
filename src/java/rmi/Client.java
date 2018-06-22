@@ -1,64 +1,67 @@
 package java.rmi;
 
-import algorithm.ConcurrentMergeSort;
-import utilities.Utilities;
+
+import java.algoritmes.ConcurrentMergeSort;
+import java.helper.CustomUtilities;
 import java.net.InetAddress;
 import java.time.LocalDateTime;
+import java.util.logging.Logger;
 
 /**
- * Maintained and created by:
- * R. Lobato
- * C. Verra
+ * Parallel Computing
+ * AUTHOR: R. Lobato & C. Verra
  */
-
 public class Client {
 
-    public Client() {
-    }
+	private final static Logger LOGGER = Logger.getLogger(Client.class.getName());
 
-    public static void main(final String... args) {
-        try {
-            String localHostname = InetAddress.getLocalHost().getHostName();
-            System.out.println("This is host: " + localHostname);
+	public Client() {
+	}
 
-            String serviceHost = Server.masterNodeName;
+	public static void main(final String... args) {
+		try {
+			String localHostname = InetAddress.getLocalHost().getHostName();
+			LOGGER.info("This is host: " + localHostname);
 
-            Service service = Server.connect(serviceHost);
+			String serviceHost = Server.hostName;
 
-            long t1, t2;
+			Service service = Server.connect(serviceHost);
 
-            t1 = System.currentTimeMillis();
-            service.ping();
-            t2 = System.currentTimeMillis();
-            System.out.println("Ping took " + (t2 - t1) + " ms.");
+			long t1, t2;
 
-            t1 = System.currentTimeMillis();
-            String greeting = service.sendMessage("Hello World at " + LocalDateTime.now());
-            t2 = System.currentTimeMillis();
+			t1 = System.currentTimeMillis();
+			service.ping();
+			t2 = System.currentTimeMillis();
+			System.out.println("Ping took " + (t2 - t1) + " ms.");
 
-            System.out.println("Client side: " + greeting);
-            System.out.println("SendMessage took " + (t2 - t1) + " ms.");
+			t1 = System.currentTimeMillis();
+			String greeting = service.sendMessage("Hello World at " + LocalDateTime.now());
+			t2 = System.currentTimeMillis();
 
-            service.executeTask(new Sort());
+			LOGGER.info("Client side: " + greeting);
+			LOGGER.info("SendMessage took " + (t2 - t1) + " ms.");
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+			service.executeTask(new Sort());
 
-    static class Sort implements Task<Boolean> {
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-        private int[] array;
+	static class Sort implements Task<Boolean> {
 
-        public Sort() {
-            this.array = Utils.fillArray(1_024_000);
-        }
+		private int[] array;
 
-        @Override
-        public Boolean execute() {
-            ConcurrentMergeSort mergeSort = new ConcurrentMergeSort(array);
-            mergeSort.sort();
-            return Utils.isSorted(array);
-        }
-    }
+		public Sort() {
+			this.array = CustomUtilities.generateArray(1_024_000);
+		}
+
+		@Override
+		public Boolean execute() {
+			ConcurrentMergeSort mergeSort = new ConcurrentMergeSort(array);
+			mergeSort.sort();
+
+			return CustomUtilities.isArraySorted(array);
+		}
+	}
 }

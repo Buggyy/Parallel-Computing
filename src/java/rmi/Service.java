@@ -1,9 +1,8 @@
 package java.rmi;
-
 /**
- * Maintained and created by:
- * R. Lobato
- * C. Verra
+ * Parallel Computing
+ * RMI Service
+ * AUTHOR: R. Lobato & C. Verra
  */
 public interface Service extends Remote {
 

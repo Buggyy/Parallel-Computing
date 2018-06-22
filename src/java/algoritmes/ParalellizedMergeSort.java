@@ -1,11 +1,9 @@
 package java.algoritmes;
 
-import java.utilities.Sorter;
-
+import java.helper.Sorter;
 /**
- * Maintained and created by:
- * R. Lobato
- * C. Verra
+ * Parallel Computing
+ * AUTHOR: R. Lobato & C. Verra
  */
 
 public class ParalellizedMergeSort {
@@ -24,7 +22,7 @@ public class ParalellizedMergeSort {
         parallelizedMergeSort(0, number - 1, Runtime.getRuntime().availableProcessors());
     }
 
-    private static void parallelizedMergeSort(int low, int high, int threads) {
+    public static void parallelizedMergeSort(int low, int high, int threads) {
         if (threads <= 1) {
             mergeSort.mergesort(low, high);
         } else if (number > 2) {

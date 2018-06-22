@@ -2,13 +2,10 @@ package java.algoritmes;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
-
 /**
- * Maintained and created by:
- * R. Lobato
- * C. Verra
+ * Parallel Computing
+ * AUTHOR: R. Lobato & C. Verra
  */
-//@Stefan, ook class renamen?
 public class ConcurrentMergeSort {
 
     private final ForkJoinPool pool = new ForkJoinPool();

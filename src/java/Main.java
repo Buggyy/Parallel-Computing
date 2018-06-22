@@ -1,11 +1,9 @@
 package java;
 
 import java.util.Arrays;
-
 /**
- * Maintained and created by:
- * R. Lobato
- * C. Verra
+ * Parallel Computing
+ * AUTHOR: R. Lobato & C. Verra
  */
 
 public final class Main {

@@ -1,84 +1,84 @@
 package java.rmi;
 
+import java.net.InetAddress;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.net.InetAddress;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
+import java.util.logging.Logger;
 
 /**
- * Maintained and created by:
- * R. Lobato
- * C. Verra
+ * Parallel Computing
+ * RMI Server
+ * AUTHOR: R. Lobato & C. Verra
  */
-
 public class Server extends UnicastRemoteObject implements Service {
-    private static final int port = 2000;
-    private static final String serviceName = "testing";
-    private static String hostName;
 
+	private final static Logger LOGGER = Logger.getLogger(Server.class.getName());
 
-    private Task task;
+	private static final int PORT = 2000;
+	private static final String SERVICE_NAME = "testing";
 
-    private Server() throws RemoteException {
-    }
+	static String hostName = "No Host set";
+	private Task task;
 
-    static Service connect(String host) {
-        Service remoteService = null;
+	private Server() throws RemoteException {
+	}
 
-        try {
-            System.out.println("verbinden met " + host); // kan dit weg?
+	static Service connect(String host) {
+		Service remoteService = null;
 
-            Registry registry = LocateRegistry.getRegistry(host, port);
-            remoteService = (Service) registry.lookup(serviceName);
+		try {
+			LOGGER.info("Connectie met " + host);
 
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
+			Registry registry = LocateRegistry.getRegistry(host, PORT);
+			remoteService = (Service) registry.lookup(SERVICE_NAME);
 
-        return remoteService;
-    }
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
 
-    public static void main(String[] args) {
-        try {
-            //hostname ophalen
-            hostName = InetAddress.getLocalHost().getHostName();
-            // sercer object starten
-            Server server = new Server();
+		return remoteService;
+	}
 
-            // registery starten
-            Registry registry = LocateRegistry.createRegistry(port);
-            // server aan object binden aan de hand van servicenaam
-            registry.bind(serviceName, server);
-            // sout
-            System.out.println(serviceName + " gestart op " + hostName); // kan dit weg?
+	public static void main(String[] args) {
+		try {
+			// Hostname ophalen
+			hostName = InetAddress.getLocalHost().getHostName();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+			// Server object starten
+			Server server = new Server();
 
-    public void ping() throws RemoteException {
-        return;
-    }
+			// Registery starten
+			Registry registry = LocateRegistry.createRegistry(PORT);
 
-    public void setTask(Task task) throws RemoteException {
-        this.task = task;
-    }
+			// Server aan object binden aan de hand van service naam
+			registry.bind(SERVICE_NAME, server);
 
-    public Task getTask() throws RemoteException {
-        return task;
-    }
+			LOGGER.info(SERVICE_NAME + " gestart op " + hostName);
 
-    public <T> T executeTask(Task<T> t) throws RemoteException {
-        return t.execute();
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    public String sendMessage(String message) throws RemoteException {
-        System.out.println("bericht: " + message);
-        return message + " ontvangen door " + hostName;
-    }
+	public void ping() {
+	}
 
+	public void setTask(Task task) {
+		this.task = task;
+	}
 
+	public Task getTask() {
+		return task;
+	}
 
+	public <T> T executeTask(Task<T> t) {
+		return t.execute();
+	}
+
+	public String sendMessage(String message) {
+		LOGGER.info("Bericht: " + message);
+
+		return message + " ontvangen door " + hostName;
+	}
 }

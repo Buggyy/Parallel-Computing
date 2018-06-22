@@ -6,18 +6,17 @@ import javax.jms.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static java.algoritmes.BucketSortfromQueue.ACTIVEMQ_URL;
+import static java.helper.Config.ACTIVEMQ_URL;
+import static java.helper.Config.FROM_CSP;
+
 
 /**
- * The ActiveMQ Producer Class
- * <p>
- * Maintained and created by:
- * R. Lobato
+ * Parallel Computing
+ * ActiveMQ Producer Class
+ *
+ * AUTHOR: R. Lobato & C. Verra
  */
 public class Producer {
-    //    Queue name of Producer
-    private static String subject = "testQueue1";
-
     public static void main(String[] args) throws JMSException {
 
         System.out.println("Producer started.\n");
@@ -44,13 +43,13 @@ public class Producer {
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
         //  Destination Queue for Producer
-        Destination destination = session.createQueue(subject);
+        Destination destination = session.createQueue(FROM_CSP);
         MessageProducer producer = session.createProducer(destination);
 
         TextMessage message = session.createTextMessage(Arrays.toString(arrayToSort));
         producer.send(message);
 
-        System.out.println("Message sent to testQueue1.\n");
+        System.out.println("Message sent to producerQueue.\n");
         System.out.println("Start BucketSortfromQueue.main() to continue..");
 
         connection.close();

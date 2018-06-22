@@ -1,16 +1,17 @@
-package java.utilities;
+package java.helper;
+
+import java.algoritmes.ParalellizedMergeSort;
 
 /**
- * Maintained and created by:
- * R. Lobato
- * C. Verra
+ * Parallel Computing
+ * AUTHOR: R. Lobato & C. Verra
  */
-// @Stefan, niks aangepast
 public class Sorter implements Runnable {
 
     private int low;
     private int high;
     private int threads;
+
 
     public Sorter(int low, int high, int threads) {
         this.low = low;
@@ -20,6 +21,6 @@ public class Sorter implements Runnable {
 
     @Override
     public void run() {
-        mergesort.ParalellizedMergeSort.parallelizedMergeSort(low, high, threads);
+		ParalellizedMergeSort.parallelizedMergeSort(low, high, threads);
     }
 }

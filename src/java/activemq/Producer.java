@@ -1,28 +1,22 @@
 package java.activemq;
-
 import org.apache.activemq.ActiveMQConnectionFactory;
-
 import javax.jms.*;
-
-import static utilities.Utilities.*;
+import static java.helper.Config.ACTIVEMQ_URL;
+import static utilities.CustomUtilities.*;
 
 /**
- * Maintained and created by:
- * R. Lobato
- * C. Verra
+ * Parallel Computing
+ * AUTHOR: R. Lobato & C. Verra
  */
-
 public class Producer {
-    private static String subject = "testQueue1"; // Queue Name
 
-    public static final int NODES = 2;
+    static final int NODES = 2;
 
     public static void main(String[] args) throws JMSException {
-        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(url);
+        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
         Connection connection = connectionFactory.createConnection();
         connection.start();
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-
 
         int[] array = generateArray(10);
         arrayShuffler(array);
@@ -39,6 +33,13 @@ public class Producer {
         connection.close();
     }
 
+    /**
+     *
+     * @param str
+     * @param session
+     * @param queue
+     * @throws JMSException
+     */
     private static void sendMessage(String str, Session session, String queue) throws JMSException {
         Destination destination = session.createQueue(queue);
         MessageProducer producer = session.createProducer(destination);

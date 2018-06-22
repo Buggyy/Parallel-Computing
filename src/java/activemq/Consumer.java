@@ -1,16 +1,18 @@
 package java.activemq;
 
-import mergesort.ConcurrentMergeSort;
-import utilities.Utilities;
 import org.apache.activemq.ActiveMQConnectionFactory;
+
 import javax.jms.*;
+import java.algoritmes.ConcurrentMergeSort;
+import java.helper.CustomUtilities;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.helper.Config.ACTIVEMQ_URL;
+
 /**
- * Maintained and created by:
- * R. Lobato
- * C. Verra
+ * Parallel Computing
+ * AUTHOR: R. Lobato & C. Verra
  */
 public class Consumer {
     private static String subject = "resultaat";
@@ -49,9 +51,10 @@ public class Consumer {
                     ConcurrentMergeSort concurrentMergeSort = new ConcurrentMergeSort(array);
                     concurrentMergeSort.sort();
 
-                    System.out.println("Is the array sorted? --> " + Utilities.isArraySorted(array));
 
-                    if (Utilities.isArraySorted(array))
+                    System.out.println("Is the array sorted? --> " + CustomUtilities.isArraySorted(array));
+
+                    if (CustomUtilities.isArraySorted(array))
                         break;
                 }
             }

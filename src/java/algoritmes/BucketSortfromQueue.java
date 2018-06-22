@@ -3,33 +3,33 @@ package java.algoritmes;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
+import java.rmi.Server;
 import java.util.Arrays;
+import java.util.logging.Logger;
 
-import static java.utilities.Config.ACTIVEMQ_URL;
+import static java.helper.Config.*;
 
 /**
- * The ActiveMQ using the BucketSort algorithm
- * Maintained and created by:
- * R. Lobato
+ * ActiveMQ ft. BucketSort
+ * Parallel Computing
+ * AUTHOR: R. Lobato & C. Verra
  */
 public class BucketSortfromQueue {
 
-    private static String subjectFrom = "testQueue1";
-    private static String subjectTo = "testQueue2";
+	private final static Logger LOGGER = Logger.getLogger(Server.class.getName());
 
-    public static void main(String args[]) throws Exception {
+	public static void main(String args[]) throws Exception {
 
-        System.out.println("BucketSort from testQueue1 started.\n");
+		LOGGER.info("BucketSort from " + FROM_CSP + " started.\n");
 
-        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
+		ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
         Connection connection = connectionFactory.createConnection();
         connection.start();
 
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        Destination destination_fromQueue = session.createQueue(subjectFrom);
+        Destination destination_fromQueue = session.createQueue(FROM_CSP);
         MessageConsumer consumer = session.createConsumer(destination_fromQueue);
         Message message = consumer.receive();
-
 
         Integer[] arrayToSort = null;
 
@@ -48,7 +48,6 @@ public class BucketSortfromQueue {
                     .replaceAll("\\s", "")
                     .split(",");
 
-
             arrayToSort = new Integer[integers.length];
 
             System.out.println("Turning String Array into Integer Array.\n");
@@ -57,15 +56,14 @@ public class BucketSortfromQueue {
                 try {
                     arrayToSort[i] = Integer.parseInt(integers[i]);
                 } catch (NumberFormatException nfe) {
-                    // Code, to recover from formatting errors
+                	LOGGER.severe(String.valueOf(nfe));
                 }
-
             }
         } else {
             System.err.println("Failed to get Message!");
         }
 
-        Destination destination_toQueue = session.createQueue(subjectTo);
+        Destination destination_toQueue = session.createQueue(TO_CSP);
         MessageProducer producer = session.createProducer(destination_toQueue);
 
         //  Default Bucket Size = 5
@@ -77,7 +75,10 @@ public class BucketSortfromQueue {
         producer.send(messageTo);
         connection.close();
 
-        System.out.println("Message sent to testQueue2.\n");
+		LOGGER.info("Message sent to " + TO_CSP + ".\n");
+		LOGGER.info("Start Consumer.main() to continue..");
+
+		System.out.println("Message sent to testQueue2.\n");
         System.out.println("Start Consumer.main() to continue..");
 
     }

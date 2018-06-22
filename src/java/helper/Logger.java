@@ -1,9 +1,7 @@
 package utilities;
-
 /**
- * Maintained and created by:
- * R. Lobato
- * C. Verra
+ * Parallel Computing
+ * AUTHOR: R. Lobato & C. Verra
  */
 
 // @Stefan, alleen class renamed, denk dat dit alleen voor logs nodig is namelijk

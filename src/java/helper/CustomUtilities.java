@@ -1,13 +1,11 @@
-package utilities;
+package java.helper;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Maintained and created by:
- * R. Lobato
- * C. Verra
+ * Parallel Computing
+ * AUTHOR: R. Lobato & C. Verra
  */
-
-public class Utilities {
+public class CustomUtilities {
 
     /**
      * Source: http://stackoverflow.com/questions/1519736/random-shuffling-of-an-array
