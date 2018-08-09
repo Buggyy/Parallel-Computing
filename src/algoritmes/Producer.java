@@ -1,4 +1,4 @@
-package java.algoritmes;
+package algoritmes;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
@@ -6,8 +6,8 @@ import javax.jms.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static java.helper.Config.ACTIVEMQ_URL;
-import static java.helper.Config.FROM_CSP;
+import static helper.Config.ACTIVEMQ_URL;
+import static helper.Config.FROM_CSP;
 
 
 /**

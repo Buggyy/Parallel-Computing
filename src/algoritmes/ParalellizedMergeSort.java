@@ -1,6 +1,6 @@
-package java.algoritmes;
+package algoritmes;
 
-import java.helper.Sorter;
+import helper.Sorter;
 /**
  * Parallel Computing
  * AUTHOR: R. Lobato & C. Verra
@@ -32,7 +32,7 @@ public class ParalellizedMergeSort {
      * @param high
      * @param threads
      */
-    private static void parallelizedMergeSort(int low, int high, int threads) {
+    public static void parallelizedMergeSort(int low, int high, int threads) {
         if (threads <= 1) {
             mergeSort.mergesort(low, high);
         } else if (number > 2) {

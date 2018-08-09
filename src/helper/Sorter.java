@@ -1,6 +1,6 @@
-package java.helper;
+package helper;
 
-import java.algoritmes.ParalellizedMergeSort;
+import algoritmes.ParalellizedMergeSort;
 
 /**
  * Parallel Computing

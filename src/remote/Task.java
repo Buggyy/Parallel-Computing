@@ -1,4 +1,4 @@
-package java.rmi;
+package remote;
 
 /**
  * Parallel Computing

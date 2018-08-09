@@ -1,10 +1,13 @@
-package java.activemq;
+package activemq;
+
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
+import remote.Server;
+import java.util.logging.Logger;
 
-import static java.helper.Config.ACTIVEMQ_URL;
-import static java.helper.CustomUtilities.*;
+import static helper.Config.ACTIVEMQ_URL;
+import static helper.CustomUtilities.*;
 
 /**
  * Parallel Computing
@@ -52,6 +55,6 @@ public class Producer {
         TextMessage message = session.createTextMessage(str);
         producer.send(message);
 
-        Logger.info("Bericht verzonden");
+        LOGGER.info("Bericht verzonden");
     }
 }

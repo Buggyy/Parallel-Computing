@@ -1,4 +1,4 @@
-package java.algoritmes;
+package algoritmes;
 
 /**
  * Maintained and created by:

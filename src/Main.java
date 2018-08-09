@@ -1,5 +1,3 @@
-package java;
-
 import java.util.Arrays;
 /**
  * Parallel Computing
@@ -13,6 +11,7 @@ public final class Main {
 
 
     public static void main(final String... args) {
+
         final utilities.Logger eventProfiler = new utilities.Logger(true);
 
         int[] array = {0, 1, 2, 3, 4, 5, 6, 7};

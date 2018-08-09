@@ -1,8 +1,8 @@
-package java.rmi;
+package remote;
 
 
-import java.algoritmes.ConcurrentMergeSort;
-import java.helper.CustomUtilities;
+import algoritmes.ConcurrentMergeSort;
+import helper.CustomUtilities;
 import java.net.InetAddress;
 import java.time.LocalDateTime;
 import java.util.logging.Logger;
@@ -21,7 +21,7 @@ public class Client {
 	public static void main(final String... args) {
 		try {
 			String localHostname = InetAddress.getLocalHost().getHostName();
-			LOGGER.info("de host is: " + localHostname);
+			LOGGER.info("Host: " + localHostname);
 
 			String serviceHost = Server.hostName;
 

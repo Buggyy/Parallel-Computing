@@ -1,4 +1,4 @@
-package java.helper;
+package helper;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -36,9 +36,10 @@ public class CustomUtilities {
     }
 
     /**
-     * 
-     * @param anArray
-     */
+	 * Print the array
+	 *
+	 * @param anArray Array to print ou
+	 */
     public static void printArray(int[] anArray) {
         System.out.print("Array: ");
         for (int i = 0; i < anArray.length; i++) {

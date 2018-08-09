@@ -1,10 +1,12 @@
-package java.algoritmes;
+package algoritmes;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
+import remote.Server;
+import java.util.logging.Logger;
 
-import static java.algoritmes.BucketSortfromQueue.ACTIVEMQ_URL;
+import static helper.Config.ACTIVEMQ_URL;
 
 /**
  * De ActiveMQ Consumer Class

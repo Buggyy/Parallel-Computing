@@ -1,14 +1,14 @@
-package java.activemq;
+package activemq;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
-import java.algoritmes.ConcurrentMergeSort;
-import java.helper.CustomUtilities;
+import algoritmes.ConcurrentMergeSort;
+import helper.CustomUtilities;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.helper.Config.ACTIVEMQ_URL;
+import static helper.Config.ACTIVEMQ_URL;
 
 /**
  * Parallel Computing

@@ -1,10 +1,11 @@
-package java.activemq;
+package activemq;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
-import java.algoritmes.ConcurrentMergeSort;
-import static java.helper.Config.ACTIVEMQ_URL;
-import static java.helper.Config.FROM_CSP;
+import algoritmes.ConcurrentMergeSort;
+import static helper.Config.ACTIVEMQ_URL;
+import static helper.Config.FROM_CSP;
+import static helper.CustomUtilities.arrayToString;
 
 /**
  * Parallel Computing
@@ -35,9 +36,10 @@ public class SortStringFromQueue {
         int[] integerList = null;
         if (message instanceof TextMessage) {
 
-            TextMessage message = (TextMessage) message;
-            String string = message.getText();
-            // bijhouden string van nummers ontvangen van de queue
+            TextMessage txtMessage = (TextMessage) message;
+            String string = txtMessage.getText();
+
+            // Bijhouden string van nummers ontvangen van de queue
             String[] listOfIntegerStrings = string.split(" ");
 
             integerList = new int[listOfIntegerStrings.length];
@@ -52,7 +54,7 @@ public class SortStringFromQueue {
         ConcurrentMergeSort concurrentMergeSort = new ConcurrentMergeSort(integerList);
         concurrentMergeSort.sort();
 
-        String consumerString = utilities.CustomUtilities.arrayToString(integerList != null ? integerList : new int[0]);
+        String consumerString = arrayToString(integerList != null ? integerList : new int[0]);
 
         TextMessage messageTo = session.createTextMessage(consumerString);
 

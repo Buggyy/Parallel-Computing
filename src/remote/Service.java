@@ -1,4 +1,8 @@
-package java.rmi;
+package remote;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
 /**
  * Parallel Computing
  * RMI Service

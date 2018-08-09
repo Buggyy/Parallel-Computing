@@ -1,4 +1,4 @@
-package java.helper;
+package helper;
 
 /**
  * Parallel Computing

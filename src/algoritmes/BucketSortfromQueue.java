@@ -1,13 +1,13 @@
-package java.algoritmes;
+package algoritmes;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
+import remote.Server;
 
 import javax.jms.*;
-import java.rmi.Server;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
-import static java.helper.Config.*;
+import static helper.Config.*;
 
 /**
  * ActiveMQ ft. BucketSort
