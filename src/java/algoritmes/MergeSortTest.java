@@ -17,6 +17,9 @@ public class MergeSortTest {
     private final static int MAX = 20;
     private int[] numbers;
 
+    private final static Logger LOGGER = Logger.getLogger(Server.class.getName());
+
+
     /**
      * setup functie
      * @throws Exception
@@ -39,7 +42,7 @@ public class MergeSortTest {
 
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
-        System.out.println("Mergesort " + elapsedTime);
+        LOGGER.info("Mergesort " + elapsedTime);
 
         for (int i = 0; i < numbers.length - 1; i++) {
             if (numbers[i] > numbers[i + 1]) {
@@ -75,7 +78,7 @@ public class MergeSortTest {
         Arrays.sort(numbers);
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
-        System.out.println("Standaard Java sorteren " + elapsedTime);
+        LOGGER.info("Standaard Java sorteren " + elapsedTime);
 
         for (int i = 0; i < numbers.length - 1; i++) {
             if (numbers[i] > numbers[i + 1]) {

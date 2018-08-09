@@ -20,7 +20,7 @@ public class BucketSortfromQueue {
 
 	public static void main(String args[]) throws Exception {
 
-		LOGGER.info("BucketSort from " + FROM_CSP + " started.\n");
+		LOGGER.info("BucketSort van " + FROM_CSP + " gestart.\n");
 
 		ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
         Connection connection = connectionFactory.createConnection();

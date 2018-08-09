@@ -13,6 +13,7 @@ import static java.helper.CustomUtilities.*;
 public class Producer {
     // naam van de queue
     private static String subject = "test1";
+    private final static Logger LOGGER = Logger.getLogger(Server.class.getName());
 
     static final int NODES = 2;
 
@@ -51,6 +52,6 @@ public class Producer {
         TextMessage message = session.createTextMessage(str);
         producer.send(message);
 
-        System.out.println("Bericht verzonden");
+        Logger.info("Bericht verzonden");
     }
 }

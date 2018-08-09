@@ -13,11 +13,13 @@ import static java.algoritmes.BucketSortfromQueue.ACTIVEMQ_URL;
  */
 public class Consumer {
     //    Queue naam van Consumer
-    private static String subject = "testQueue2";
+    private static String subject = "test2";
+    private final static Logger LOGGER = Logger.getLogger(Server.class.getName());
+
 
     public static void main(String[] args) throws JMSException {
 
-        System.out.println("Consumer gestart.\n");
+        LOGGER.info("Consumer gestart.\n");
 
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
         Connection connection = connectionFactory.createConnection();
@@ -26,7 +28,7 @@ public class Consumer {
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         Destination destination = session.createQueue(subject);
 
-        System.out.println("Ophalen Message van testQueue2.\n");
+        LOGGER.info("Ophalen Message van test2.\n");
         MessageConsumer consumer = session.createConsumer(destination);
         Message message = consumer.receive();
 
@@ -39,7 +41,7 @@ public class Consumer {
 
         connection.close();
 
-        System.out.println("RMI is klaar.\n");
+        LOGGER.info("RMI is klaar.\n");
 
     }
 }

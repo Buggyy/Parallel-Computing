@@ -18,7 +18,7 @@ public class Server extends UnicastRemoteObject implements Service {
 	private static final int PORT = 2000;
 	private static final String SERVICE_NAME = "testing";
 
-	static String hostName = "No Host set";
+	static String hostName = "Geen host gedefinieerd";
 	private Task task;
 
 	private Server() throws RemoteException {

@@ -21,7 +21,7 @@ public class Client {
 	public static void main(final String... args) {
 		try {
 			String localHostname = InetAddress.getLocalHost().getHostName();
-			LOGGER.info("This is host: " + localHostname);
+			LOGGER.info("de host is: " + localHostname);
 
 			String serviceHost = Server.hostName;
 
@@ -32,14 +32,14 @@ public class Client {
 			t1 = System.currentTimeMillis();
 			service.ping();
 			t2 = System.currentTimeMillis();
-			System.out.println("Ping took " + (t2 - t1) + " ms.");
+			System.out.println("Ping duurde " + (t2 - t1) + " ms.");
 
 			t1 = System.currentTimeMillis();
-			String greeting = service.sendMessage("Hello World at " + LocalDateTime.now());
+			String bericht = service.sendMessage("Hello daar om: " + LocalDateTime.now());
 			t2 = System.currentTimeMillis();
 
-			LOGGER.info("Client side: " + greeting);
-			LOGGER.info("SendMessage took " + (t2 - t1) + " ms.");
+			LOGGER.info("Client side: " + bericht);
+			LOGGER.info("SendMessage duurde " + (t2 - t1) + " ms.");
 
 			service.executeTask(new Sort());
 
