@@ -3,6 +3,7 @@ package remote;
 
 import algoritmes.ConcurrentMergeSort;
 import helper.CustomUtilities;
+
 import java.net.InetAddress;
 import java.time.LocalDateTime;
 import java.util.logging.Logger;
@@ -18,9 +19,11 @@ public class Client {
 	public Client() {
 	}
 
-	public static void main(final String... args) {
+	public static void main(String args[]) {
+
 		try {
 			String localHostname = InetAddress.getLocalHost().getHostName();
+
 			LOGGER.info("Host: " + localHostname);
 
 			String serviceHost = Server.hostName;
@@ -41,7 +44,7 @@ public class Client {
 			LOGGER.info("Client side: " + bericht);
 			LOGGER.info("SendMessage duurde " + (t2 - t1) + " ms.");
 
-			service.executeTask(new Sort());
+//			service.executeTask(new Sort());
 
 		} catch (Exception e) {
 			e.printStackTrace();

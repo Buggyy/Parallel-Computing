@@ -1,14 +1,12 @@
 package algoritmes;
 
-import static helper.CustomUtilities.printArray;
-
 /**
  * Parallel-Computing
  * AUTHOR: R. Lobato & C. Verra
  */
 public class BubbleSort {
 
-	void bubbleSort(int arr[]) {
+	public void sort(int arr[]) {
 		int n = arr.length;
 
 		//	Iterate over array
@@ -22,19 +20,5 @@ public class BubbleSort {
 					arr[j] = arr[j + 1];
 					arr[j + 1] = temp;
 				}
-	}
-
-	/**
-	 * Driver method to test printArray()
-	 *
-	 * @param args Method arguments
-	 */
-	public static void main(String args[]) {
-		BubbleSort ob = new BubbleSort();
-		int arr[] = {64, 34, 25, 12, 22, 11, 90};
-		ob.bubbleSort(arr);
-		System.out.println("Sorted array");
-
-		printArray(arr);
 	}
 }

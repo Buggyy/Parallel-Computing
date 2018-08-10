@@ -1,18 +1,16 @@
 package algoritmes;
 
 /**
- * Maintained and created by:
- * R. Lobato
+ * Parallel-Computing
+ * AUTHOR: R. Lobato & C. Verra
  */
 public class MergeSort {
     private int[] numbers;
     private int[] helper;
 
-    private int number;
-
-    public void sort(int[] values) {
+	public void sort(int[] values) {
         this.numbers = values;
-        number = values.length;
+		int number = values.length;
         this.helper = new int[number];
         mergesort(0, number - 1);
     }
@@ -22,7 +20,7 @@ public class MergeSort {
      * @param low
      * @param high
      */
-    protected void mergesort(int low, int high) {
+	void mergesort(int low, int high) {
         // kijken of low kleiner is dan high, zo niet, dan is de array gesorteerd
         if (low < high) {
             // pak index van middelsgte element
@@ -42,7 +40,7 @@ public class MergeSort {
      * @param middle
      * @param high
      */
-    protected void merge(int low, int middle, int high) {
+	void merge(int low, int middle, int high) {
 
         // kopier beide delen in de helper array
         for (int i = low; i <= high; i++) {

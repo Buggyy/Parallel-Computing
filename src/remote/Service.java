@@ -14,6 +14,8 @@ public interface Service extends Remote {
 
     String sendMessage(String message) throws RemoteException;
 
+	String getMessage() throws RemoteException;
+
     <T> T executeTask(Task<T> t) throws RemoteException;
 
     void setTask(Task task) throws RemoteException;
