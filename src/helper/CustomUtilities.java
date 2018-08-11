@@ -1,5 +1,7 @@
 package helper;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Parallel Computing
@@ -40,7 +42,7 @@ public class CustomUtilities {
 	 *
 	 * @param anArray Array to print ou
 	 */
-    public static void printArray(int[] anArray) {
+    public static void printArray(Integer[] anArray) {
         System.out.print("Array: ");
         for (int i = 0; i < anArray.length; i++) {
             System.out.print(anArray[i] + " ");
@@ -137,4 +139,25 @@ public class CustomUtilities {
 
         return chunkedArrays;
     }
+
+	/**
+	 * Try to shut exit ExecutorService properly
+	 * @param executorService to shut down
+	 */
+	public static void exitExecutor(ExecutorService executorService) {
+		try {
+			System.out.println("--------------------------------------");
+			System.out.println("Poging afsluiten executor");
+			executorService.shutdown();
+			executorService.awaitTermination(5, TimeUnit.SECONDS);
+		} catch (InterruptedException e) {
+			System.err.println("Taken onderbroken");
+		} finally {
+			if (!executorService.isTerminated()) {
+				System.err.println("Annuleer niet afgemaakte taken");
+			}
+			executorService.shutdownNow();
+			System.out.println("Shutdown klaar");
+		}
+	}
 }

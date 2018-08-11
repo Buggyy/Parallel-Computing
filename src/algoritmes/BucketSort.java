@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+
+import static helper.CustomUtilities.exitExecutor;
 
 /**
- * Maintained and created by:
- * R. Lobato
+ * Parallel-Computing
+ * AUTHOR: R. Lobato & C. Verra
  */
-class BucketSort {
+public class BucketSort {
 
     private static final int DEFAULT_BUCKET_SIZE = 5;
     private static int currentIndex = 0;
 
-    static void sort(Integer[] array) {
+    public static void sort(Integer[] array) {
         sort(array, DEFAULT_BUCKET_SIZE);
     }
     static void sort(Integer[] arrayToSort, int bucketSize) {
@@ -32,7 +33,7 @@ class BucketSort {
 
         // Bepaal min en max waarden
         Integer minValue = arrayToSort[0];
-        Integer maxValue = arrayToSort[0];
+        Integer  maxValue= arrayToSort[0];
         for (int i = 1; i < arrayToSort.length; i++) {
             if (arrayToSort[i] < minValue) {
                 minValue = arrayToSort[i];
@@ -81,26 +82,13 @@ class BucketSort {
         });
 
 
-        try {
-            System.out.println("--------------------------------------");
-            System.out.println("Poging afsluiten executor");
-            executorService.shutdown();
-            executorService.awaitTermination(5, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            System.err.println("Taken onderbroken");
-        } finally {
-            if (!executorService.isTerminated()) {
-                System.err.println("Annuleer niet afgemaakte taken");
-            }
-            executorService.shutdownNow();
-            System.out.println("Shutdown klaar");
-        }
+		exitExecutor(executorService);
 
-        final long duration = System.nanoTime() - startTime;
+		final long duration = System.nanoTime() - startTime;
         final double seconds = ((double) duration / 1000000000);
 
         // Bereken geschatte measure tijd
-        System.out.format("schatting measuring tijd: %f seconde. \n\n\n", seconds);
+        System.out.format("Schatting Meettijd: %f secondes. \n\n\n", seconds);
 
     }
 
