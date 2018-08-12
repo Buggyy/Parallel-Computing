@@ -1,8 +1,9 @@
 package activemq;
+import algoritmes.ConcurrentMergeSort;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
-import algoritmes.ConcurrentMergeSort;
+
 import static helper.Config.ACTIVEMQ_URL;
 import static helper.Config.FROM_CSP;
 import static helper.CustomUtilities.arrayToString;
@@ -32,7 +33,7 @@ public class SortStringFromQueue {
 
         MessageConsumer messageConsumer = session.createConsumer(destination_fromQueue);
         Message message = messageConsumer.receive();
-        // bijhouden geconverte en gesorteerde nummers
+        // Bijhouden geconverte en gesorteerde nummers
         int[] integerList = null;
         if (message instanceof TextMessage) {
 

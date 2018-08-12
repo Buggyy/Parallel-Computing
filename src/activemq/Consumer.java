@@ -1,10 +1,10 @@
 package activemq;
 
+import algoritmes.ConcurrentMergeSort;
+import helper.CustomUtilities;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
-import algoritmes.ConcurrentMergeSort;
-import helper.CustomUtilities;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +28,7 @@ public class Consumer {
 
         int count = 0;
 
+        //	Lijst van Integers
         List<Integer> list = new ArrayList<>();
 
         while (true) {
@@ -37,17 +38,22 @@ public class Consumer {
                 count++;
                 TextMessage textMessage = (TextMessage) message;
 
-                // sorteren van de string van nummers ontvangen van de queue
+                // String aan integers opslaan
                 String str = textMessage.getText();
+                //	String aan integers opsplitten
                 String[] integerStrings = str.split(" ");
 
+                //	Parse String Integers naar ints
                 for (String integerString : integerStrings) {
                     int j = Integer.parseInt(integerString);
+                    //	Voeg toe aan list
                     list.add(j);
                 }
 
+                //	Als het aantal lijsten gelijk is aan het aantal producers
                 if (count == Producer.NODES) {
                     int[] array = list.stream().mapToInt(i -> i).toArray();
+                    //	Sorteer lijsten individueel
                     ConcurrentMergeSort concurrentMergeSort = new ConcurrentMergeSort(array);
                     concurrentMergeSort.sort();
 

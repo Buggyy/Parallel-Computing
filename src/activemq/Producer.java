@@ -1,9 +1,9 @@
 package activemq;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
+import remote.Server;
 
 import javax.jms.*;
-import remote.Server;
 import java.util.logging.Logger;
 
 import static helper.Config.ACTIVEMQ_URL;
