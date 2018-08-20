@@ -9,9 +9,9 @@ public class MergeSort {
     private int[] helper;
 
 	public void sort(int[] values) {
-        this.numbers = values;
+        numbers = values;
 		int number = values.length;
-        this.helper = new int[number];
+        helper = new int[number];
         mergesort(0, number - 1);
     }
 

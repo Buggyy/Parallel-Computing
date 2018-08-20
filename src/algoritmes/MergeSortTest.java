@@ -1,16 +1,14 @@
 package algoritmes;
 
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.testng.annotations.Test;
 import remote.Server;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.logging.Logger;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 /**
  * Parallel-Computing
@@ -29,7 +27,7 @@ public class MergeSortTest {
 	/**
 	 * setup functie
 	 */
-	@Before
+	@BeforeEach
 	public void setUp() {
 		numbers = new int[SIZE];
 		Random generator = new Random();
@@ -39,27 +37,20 @@ public class MergeSortTest {
 	}
 
 	@Test
-	public void sort() {
-		long startTime = System.currentTimeMillis();
-		MergeSort sorter = new MergeSort();
-		sorter.sort(numbers);
+	public void testMergeSort_NormalSort() {
+		MergeSort mergeSort = new MergeSort();
+		int[] arrayToSort = new int[]{4, 2, 1, 1, 6, 4, 5, 3};
 
-		long stopTime = System.currentTimeMillis();
-		long elapsedTime = stopTime - startTime;
+		mergeSort.sort(arrayToSort);
 
-		for (int i = 0; i < numbers.length - 1; i++) {
-			if (numbers[i] > numbers[i + 1]) {
-				fail("Dit hoort niet");
-			}
-		}
-		assertTrue(true);
+		int[] expected = new int[]{1, 1, 2, 3, 4, 4, 5, 6};
 
-		LOGGER.info("MergeSort: " + elapsedTime + "ms");
+		assertArrayEquals(expected, arrayToSort);
 	}
 
 
 	@Test
-	public void itWorksRepeatably() {
+	public void testMergeSort_itWorksRepeatably() {
 		for (int i = 0; i < 200; i++) {
 			numbers = new int[SIZE];
 			Random generator = new Random();
@@ -77,25 +68,4 @@ public class MergeSortTest {
 			assertTrue(true);
 		}
 	}
-
-	@Test
-	public void testStandardSort() {
-		long startTime = System.currentTimeMillis();
-
-		Arrays.sort(numbers);
-
-		long stopTime = System.currentTimeMillis();
-		long elapsedTime = stopTime - startTime;
-
-
-		for (int i = 0; i < numbers.length - 1; i++) {
-			if (numbers[i] > numbers[i + 1]) {
-				fail("Dit hoort niet");
-			}
-		}
-		assertTrue(true);
-
-		LOGGER.info("Standaard Java sorteren: " + elapsedTime + "ms");
-	}
-
 }

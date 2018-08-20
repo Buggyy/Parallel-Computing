@@ -3,6 +3,7 @@ package algoritmes;
 import org.junit.Test;
 import remote.Server;
 
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 import static org.junit.Assert.assertArrayEquals;
@@ -20,31 +21,25 @@ public class BubbleSortTest {
 	public void shouldDoNothingWithEmptyArray() {
 		Integer[] values = {};
 
-		BubbleSort.sort(values);
+		BubbleSortSerial.sort(values);
 	}
 
 	@Test
 	public void shouldDoNothingWithOneElementArray() {
 		Integer[] values = {42};
 
-		BubbleSort.sort(values);
+		BubbleSortSerial.sort(values);
 
 		assertArrayEquals(new Integer[] {42}, values);
 	}
 
 	@Test
 	public void shouldSortValues() {
-		long startTime = System.currentTimeMillis();
 
 		Integer[] values = { 9, -3, 5, 0, 1};
 		Integer[] expectedOrder = { -3, 0, 1, 5, 9};
 
-		BubbleSort.sort(values);
-
-		long stopTime = System.currentTimeMillis();
-		long elapsedTime = stopTime - startTime;
-		LOGGER.info("BubbleSort " + elapsedTime + "ms");
-
+		BubbleSortSerial.sort(values);
 		assertArrayEquals(expectedOrder, values);
 	}
 
